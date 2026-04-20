@@ -1,0 +1,86 @@
+---
+import { getEntry } from 'astro:content';
+
+const navEntry = await getEntry('shared', 'nav');
+const nav = navEntry!.data as {
+  brand_label: string;
+  brand_href: string;
+  primary_nav: { label: string; href: string }[];
+  cta_label: string;
+  cta_href: string;
+};
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+function isActive(href: string) {
+  const normalized = href.replace(/\/$/, '') || '/';
+  if (normalized === '/') return currentPath === '/';
+  return currentPath === normalized || currentPath.startsWith(normalized + '/');
+}
+---
+
+<header class="border-b border-rule bg-paper">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
+    <a href={nav.brand_href} class="inline-flex items-center" aria-label={nav.brand_label}>
+      <img
+        src="/assets/logo.png"
+        alt={nav.brand_label}
+        width="483"
+        height="275"
+        class="h-24 w-auto md:h-28"
+      />
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-8 md:flex">
+      {
+        nav.primary_nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'text-[14px] tracking-tight text-ink-muted transition-colors hover:text-ink',
+              isActive(item.href) && 'text-ink',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={nav.cta_href}
+        class="rounded-full border border-ink bg-ink px-4 py-1.5 text-[13px] font-medium tracking-tight text-paper transition-colors hover:border-accent-deep hover:bg-accent-deep"
+      >
+        {nav.cta_label}
+      </a>
+    </nav>
+
+    <details class="md:hidden">
+      <summary class="list-none text-[13px] font-medium tracking-tight text-ink [&::-webkit-details-marker]:hidden">
+        Menu
+      </summary>
+      <div
+        class="absolute left-0 right-0 top-full z-20 border-b border-rule bg-paper px-5 py-6 shadow-sm"
+      >
+        <div class="mx-auto flex max-w-6xl flex-col gap-4">
+          {
+            nav.primary_nav.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  'text-[15px] tracking-tight text-ink-muted hover:text-ink',
+                  isActive(item.href) && 'text-ink',
+                ]}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+          <a
+            href={nav.cta_href}
+            class="self-start rounded-full border border-ink bg-ink px-4 py-1.5 text-[14px] font-medium text-paper"
+          >
+            {nav.cta_label}
+          </a>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>

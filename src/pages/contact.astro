@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadPage } from '../lib/loadPage';
+
+interface ContactFrontmatter {
+  title: string;
+  description: string;
+  email: string;
+  phone: string;
+  response_time: string;
+}
+
+const { frontmatter, html } = loadPage<ContactFrontmatter>('site-content/contact.md');
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <section>
+    <div class="mx-auto max-w-3xl px-5 py-20 sm:px-8 sm:py-24">
+      <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
+        Contact
+      </p>
+      <h1
+        class="mt-4 text-[34px] font-semibold leading-tight tracking-tight text-ink sm:text-[42px]"
+      >
+        Let us scope the first call.
+      </h1>
+
+      <div class="prose-editorial mt-10" set:html={html} />
+
+      <div class="mt-12 grid gap-8 border-t border-rule pt-10 sm:grid-cols-2">
+        <div>
+          <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
+            Email
+          </p>
+          <a
+            href={`mailto:${frontmatter.email}`}
+            class="mt-2 block text-[20px] font-semibold tracking-tight text-ink hover:text-accent-deep"
+          >
+            {frontmatter.email}
+          </a>
+        </div>
+        <div>
+          <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
+            Phone
+          </p>
+          <a
+            href={`tel:${frontmatter.phone.replace(/[^0-9+]/g, '')}`}
+            class="mt-2 block text-[20px] font-semibold tracking-tight text-ink hover:text-accent-deep"
+          >
+            {frontmatter.phone}
+          </a>
+        </div>
+      </div>
+
+      <p class="mt-10 text-[14px] text-ink-muted">{frontmatter.response_time}</p>
+    </div>
+  </section>
+</BaseLayout>

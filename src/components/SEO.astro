@@ -1,0 +1,52 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  path?: string;
+  titleOverride?: boolean;
+}
+
+const { title, description, ogImage, path, titleOverride } = Astro.props;
+
+const seoEntry = await getEntry('shared', 'seo');
+const seo = seoEntry!.data as {
+  site_name: string;
+  default_title: string;
+  title_template: string;
+  default_description: string;
+  canonical_base: string;
+  og_image: string;
+  twitter_card: string;
+  locale: string;
+};
+
+const finalTitle = titleOverride
+  ? (title ?? seo.default_title)
+  : title
+    ? seo.title_template.replace('%s', title)
+    : seo.default_title;
+
+const finalDescription = description ?? seo.default_description;
+const finalOg = ogImage ?? seo.og_image;
+const canonical = new URL(path ?? Astro.url.pathname, seo.canonical_base).toString();
+---
+
+<title>{finalTitle}</title>
+<meta name="description" content={finalDescription} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={seo.site_name} />
+<meta property="og:title" content={finalTitle} />
+<meta property="og:description" content={finalDescription} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={new URL(finalOg, seo.canonical_base).toString()} />
+<meta property="og:locale" content={seo.locale} />
+
+<meta name="twitter:card" content={seo.twitter_card} />
+<meta name="twitter:title" content={finalTitle} />
+<meta name="twitter:description" content={finalDescription} />
+<meta name="twitter:image" content={new URL(finalOg, seo.canonical_base).toString()} />

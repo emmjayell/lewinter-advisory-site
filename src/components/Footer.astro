@@ -1,0 +1,84 @@
+---
+import { getEntry } from 'astro:content';
+
+const footerEntry = await getEntry('shared', 'footer');
+const footer = footerEntry!.data as {
+  legal_name: string;
+  tagline: string;
+  email: string;
+  phone: string;
+  location: string;
+  social: { label: string; href: string }[];
+  copyright_start_year: number;
+  footer_nav: { label: string; href: string }[];
+};
+
+const currentYear = new Date().getFullYear();
+const yearString =
+  currentYear > footer.copyright_start_year
+    ? `${footer.copyright_start_year}\u2013${currentYear}`
+    : `${footer.copyright_start_year}`;
+---
+
+<footer class="mt-24 border-t border-rule bg-paper-soft">
+  <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <p class="text-[15px] font-semibold tracking-tight text-ink">{footer.legal_name}</p>
+        <p class="mt-2 max-w-xs text-[14px] leading-relaxed text-ink-muted">{footer.tagline}</p>
+      </div>
+
+      <div>
+        <p
+          class="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-soft"
+        >
+          Contact
+        </p>
+        <ul class="mt-3 space-y-1.5 text-[14px] text-ink-muted">
+          <li>
+            <a href={`mailto:${footer.email}`} class="hover:text-ink">{footer.email}</a>
+          </li>
+          <li>
+            <a href={`tel:${footer.phone.replace(/[^0-9+]/g, '')}`} class="hover:text-ink">
+              {footer.phone}
+            </a>
+          </li>
+          <li>{footer.location}</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-soft">
+          Navigate
+        </p>
+        <ul class="mt-3 space-y-1.5 text-[14px] text-ink-muted">
+          {
+            footer.footer_nav.map((item) => (
+              <li>
+                <a href={item.href} class="hover:text-ink">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          {
+            footer.social.map((item) => (
+              <li>
+                <a href={item.href} rel="noopener" target="_blank" class="hover:text-ink">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-2 border-t border-rule pt-6 text-[12px] text-ink-soft sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>&copy; {yearString} {footer.legal_name}. All rights reserved.</p>
+      <p>CISSP. Based in {footer.location}.</p>
+    </div>
+  </div>
+</footer>

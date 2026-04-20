@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+
+  --color-ink: #1a1a1a;
+  --color-ink-muted: #4a4a4a;
+  --color-ink-soft: #6b6b6b;
+  --color-paper: #ffffff;
+  --color-paper-soft: #fafafa;
+  --color-rule: #e5e5e5;
+  --color-accent: #2a9d9d;
+  --color-accent-deep: #1f7676;
+
+  --tracking-tight: -0.02em;
+  --tracking-tighter: -0.03em;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-paper);
+  }
+  body {
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  a {
+    color: inherit;
+  }
+}
+
+@utility prose-editorial {
+  color: var(--color-ink);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  letter-spacing: -0.005em;
+
+  & > * + * {
+    margin-top: 1.25em;
+  }
+  & h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    margin-top: 2.25em;
+    margin-bottom: 0.5em;
+    color: var(--color-ink);
+  }
+  & h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    margin-top: 1.75em;
+    margin-bottom: 0.25em;
+  }
+  & p {
+    color: var(--color-ink);
+  }
+  & strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  & ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  & ul > li {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  & ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.35rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+  & ul > li + li {
+    margin-top: 0.5em;
+  }
+  & blockquote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1.25rem;
+    font-size: 1.1875rem;
+    line-height: 1.55;
+    color: var(--color-ink);
+    font-style: normal;
+    letter-spacing: var(--tracking-tight);
+  }
+  & a {
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  & a:hover {
+    color: var(--color-ink);
+  }
+  & hr {
+    border: 0;
+    border-top: 1px solid var(--color-rule);
+    margin: 2.5em 0;
+  }
+  & code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.95em;
+  }
+}

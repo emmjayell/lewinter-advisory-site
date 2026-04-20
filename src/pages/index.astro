@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Headshot from '../components/Headshot.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import { getCollection } from 'astro:content';
+import { loadPage } from '../lib/loadPage';
+
+interface HomeFrontmatter {
+  title: string;
+  description: string;
+  hero_eyebrow: string;
+  hero_cta_label: string;
+  hero_cta_href: string;
+  headshot: string;
+  headshot_alt: string;
+  featured_services: string[];
+  featured_case_studies: string[];
+}
+
+const { frontmatter, html } = loadPage<HomeFrontmatter>('site-content/home.md');
+
+const allServices = await getCollection('services', (e) => !e.data.draft);
+const allCaseStudies = await getCollection('caseStudies', (e) => !e.data.draft);
+
+const serviceByKey = new Map(
+  allServices.map((s) => [s.data.service_line ?? s.id, s]),
+);
+const caseStudyByKey = new Map(
+  allCaseStudies.map((c) => [c.id, c]),
+);
+
+const featuredServices = (frontmatter.featured_services as string[])
+  .map((key) => serviceByKey.get(key))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const featuredCaseStudies = (frontmatter.featured_case_studies as string[])
+  .map((key) => caseStudyByKey.get(key))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+
+const serviceTitleByKey = new Map(
+  allServices.map((s) => [s.data.service_line, s.data.title]),
+);
+---
+
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  titleOverride
+>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <div class="flex items-center gap-4">
+        <Headshot src={frontmatter.headshot} alt={frontmatter.headshot_alt} size="small" />
+        <span
+          class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft"
+        >
+          {frontmatter.hero_eyebrow}
+        </span>
+      </div>
+
+      <h1
+        class="mt-10 max-w-4xl text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-ink sm:text-[44px] md:text-[56px]"
+      >
+        {frontmatter.title}
+      </h1>
+
+      <div class="mt-10 max-w-3xl">
+        <div class="prose-editorial" set:html={html} />
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <CTA href={frontmatter.hero_cta_href} label={frontmatter.hero_cta_label} />
+        <CTA href="/services" label="See the service lines" variant="link" />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
+            Service lines
+          </p>
+          <h2
+            class="mt-3 max-w-2xl text-[26px] font-semibold leading-tight tracking-tight text-ink sm:text-[32px]"
+          >
+            Five areas of work, each run fixed-fee against outcomes you can point at.
+          </h2>
+        </div>
+        <div class="hidden sm:block">
+          <CTA href="/services" label="All services" variant="link" />
+        </div>
+      </div>
+
+      <div class="mt-10">
+        {
+          featuredServices.map((service, i) => (
+            <ServiceCard
+              href={`/services/${service.data.slug}`}
+              title={service.data.title}
+              description={service.data.description}
+              index={i}
+            />
+          ))
+        }
+        <div class="border-t border-rule"></div>
+      </div>
+
+      <div class="mt-8 sm:hidden">
+        <CTA href="/services" label="All services" variant="link" />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-rule bg-paper-soft">
+    <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
+            Selected work
+          </p>
+          <h2
+            class="mt-3 max-w-2xl text-[26px] font-semibold leading-tight tracking-tight text-ink sm:text-[32px]"
+          >
+            Engagements that show how the practice works.
+          </h2>
+        </div>
+        <div class="hidden sm:block">
+          <CTA href="/work" label="All case studies" variant="link" />
+        </div>
+      </div>
+
+      <div class="mt-10">
+        {
+          featuredCaseStudies.map((cs) => (
+            <CaseStudyCard
+              href={`/work/${cs.data.slug}`}
+              title={cs.data.title}
+              vertical={cs.data.vertical}
+              engagement_year={cs.data.engagement_year}
+              service_line={cs.data.service_line}
+              serviceLabel={serviceTitleByKey.get(cs.data.service_line)}
+            />
+          ))
+        }
+        <div class="border-t border-rule"></div>
+      </div>
+
+      <div class="mt-8 sm:hidden">
+        <CTA href="/work" label="All case studies" variant="link" />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-4xl px-5 py-20 text-center sm:px-8 sm:py-24">
+      <h2
+        class="text-[26px] font-semibold leading-tight tracking-tight text-ink sm:text-[32px]"
+      >
+        Working on something that needs a senior voice in the room?
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-ink-muted">
+        Tell me what you are working on and what a good outcome looks like. A short email is enough to scope a first call.
+      </p>
+      <div class="mt-8 flex items-center justify-center">
+        <CTA href="/contact" label="Book a working call" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

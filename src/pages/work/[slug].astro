@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('caseStudies', (e) => !e.data.draft);
+  return caseStudies.map((caseStudy) => ({
+    params: { slug: caseStudy.data.slug },
+    props: { caseStudy },
+  }));
+}
+
+const { caseStudy } = Astro.props;
+const { Content } = await render(caseStudy);
+
+const allServices = await getCollection('services', (e) => !e.data.draft);
+const serviceBySlug = new Map(
+  allServices.map((s) => [s.data.service_line, s.data]),
+);
+
+const primaryService = serviceBySlug.get(caseStudy.data.service_line);
+const secondaryService = caseStudy.data.secondary_service_line
+  ? serviceBySlug.get(caseStudy.data.secondary_service_line)
+  : undefined;
+
+const verticalLabel = caseStudy.data.vertical
+  .split('-')
+  .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+  .join(' ');
+---
+
+<BaseLayout
+  title={caseStudy.data.title}
+  description={caseStudy.data.description ?? caseStudy.data.client_type}
+>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-24">
+      <a
+        href="/work"
+        class="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-soft hover:text-ink"
+      >
+        &larr; Work
+      </a>
+
+      <div
+        class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft"
+      >
+        <span>{verticalLabel}</span>
+        {
+          primaryService && (
+            <>
+              <span class="text-rule" aria-hidden="true">
+                /
+              </span>
+              <span>{primaryService.title}</span>
+            </>
+          )
+        }
+        {
+          caseStudy.data.engagement_year && (
+            <>
+              <span class="text-rule" aria-hidden="true">
+                /
+              </span>
+              <span>{caseStudy.data.engagement_year}</span>
+            </>
+          )
+        }
+      </div>
+
+      <h1
+        class="mt-5 text-[30px] font-semibold leading-tight tracking-tight text-ink sm:text-[40px]"
+      >
+        {caseStudy.data.title}
+      </h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+      <div class="prose-editorial">
+        <Content />
+      </div>
+
+      <div class="mt-12 border-t border-rule pt-10">
+        <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
+          Services in play
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {
+            primaryService && (
+              <a
+                href={`/services/${primaryService.slug}`}
+                class="rounded-full border border-rule px-3 py-1.5 text-[13px] text-ink hover:border-ink"
+              >
+                {primaryService.title}
+              </a>
+            )
+          }
+          {
+            secondaryService && (
+              <a
+                href={`/services/${secondaryService.slug}`}
+                class="rounded-full border border-rule px-3 py-1.5 text-[13px] text-ink hover:border-ink"
+              >
+                {secondaryService.title}
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <CTA href="/contact" label="Discuss a similar engagement" />
+        <CTA href="/work" label="See all case studies" variant="link" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import { getCollection } from 'astro:content';
+import { loadPage } from '../../lib/loadPage';
+
+interface WorkIndexFrontmatter {
+  title: string;
+  description: string;
+  cta_label: string;
+  cta_href: string;
+  case_study_order: string[];
+}
+
+const { frontmatter, html } = loadPage<WorkIndexFrontmatter>(
+  'site-content/case-studies/_index.md',
+);
+
+const allServices = await getCollection('services', (e) => !e.data.draft);
+const allCaseStudies = await getCollection('caseStudies', (e) => !e.data.draft);
+
+const byKey = new Map(allCaseStudies.map((c) => [c.id, c]));
+const ordered = (frontmatter.case_study_order as string[])
+  .map((key) => byKey.get(key))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+
+const serviceTitleByKey = new Map(
+  allServices.map((s) => [s.data.service_line, s.data.title]),
+);
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+      <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
+        Work
+      </p>
+      <h1
+        class="mt-4 max-w-3xl text-[34px] font-semibold leading-tight tracking-tight text-ink sm:text-[44px]"
+      >
+        How the practice has run in the field.
+      </h1>
+      <div class="prose-editorial mt-8 max-w-2xl" set:html={html} />
+      <div class="mt-10">
+        <CTA href={frontmatter.cta_href} label={frontmatter.cta_label} />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      {
+        ordered.map((cs) => (
+          <CaseStudyCard
+            href={`/work/${cs.data.slug}`}
+            title={cs.data.title}
+            vertical={cs.data.vertical}
+            engagement_year={cs.data.engagement_year}
+            service_line={cs.data.service_line}
+            serviceLabel={serviceTitleByKey.get(cs.data.service_line)}
+          />
+        ))
+      }
+      <div class="border-t border-rule"></div>
+    </div>
+  </section>
+</BaseLayout>

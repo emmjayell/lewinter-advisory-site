@@ -1,0 +1,44 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'primary' | 'secondary' | 'link';
+  class?: string;
+}
+
+const { href, label, variant = 'primary', class: className } = Astro.props;
+
+const base =
+  'inline-flex items-center gap-2 text-[14px] font-medium tracking-tight transition-colors';
+const variants: Record<string, string> = {
+  primary:
+    'rounded-full border border-ink bg-ink px-5 py-2.5 text-paper hover:border-accent-deep hover:bg-accent-deep',
+  secondary:
+    'rounded-full border border-ink/80 px-5 py-2.5 text-ink hover:border-accent-deep hover:text-accent-deep',
+  link: 'text-accent-deep underline underline-offset-4 decoration-1 hover:text-ink',
+};
+---
+
+<a href={href} class:list={[base, variants[variant], className]}>
+  {label}
+  {
+    variant !== 'link' && (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        aria-hidden="true"
+        class="translate-y-px"
+      >
+        <path
+          d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
+  }
+</a>

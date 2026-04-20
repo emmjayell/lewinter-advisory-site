@@ -1,0 +1,25 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  size?: 'small' | 'medium';
+  class?: string;
+}
+
+const { src, alt, size = 'small', class: className } = Astro.props;
+const sizeClass = size === 'medium' ? 'size-32 md:size-40' : 'size-20 md:size-24';
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={size === 'medium' ? 160 : 96}
+  height={size === 'medium' ? 160 : 96}
+  loading="lazy"
+  decoding="async"
+  class:list={[
+    'rounded-full object-cover object-top ring-1 ring-rule',
+    sizeClass,
+    className,
+  ]}
+/>

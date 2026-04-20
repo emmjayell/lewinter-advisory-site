@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services', (e) => !e.data.draft);
+  return services.map((service) => ({
+    params: { slug: service.data.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+
+const allServices = await getCollection('services', (e) => !e.data.draft);
+const allCaseStudies = await getCollection('caseStudies', (e) => !e.data.draft);
+
+const serviceTitleByKey = new Map(
+  allServices.map((s) => [s.data.service_line, s.data.title]),
+);
+
+const relatedCaseStudies = allCaseStudies.filter(
+  (c) =>
+    c.data.service_line === service.data.service_line ||
+    c.data.secondary_service_line === service.data.service_line,
+);
+---
+
+<BaseLayout
+  title={service.data.title}
+  description={service.data.description}
+>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-24">
+      <a
+        href="/services"
+        class="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-soft hover:text-ink"
+      >
+        &larr; Services
+      </a>
+      <h1
+        class="mt-6 text-[32px] font-semibold leading-tight tracking-tight text-ink sm:text-[40px]"
+      >
+        {service.data.title}
+      </h1>
+      <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
+        {service.data.description}
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+      <div class="prose-editorial">
+        <Content />
+      </div>
+
+      <div class="mt-12 flex flex-wrap gap-4">
+        <CTA href={service.data.cta_href} label={service.data.cta_label} />
+        <CTA href="/services" label="See all services" variant="link" />
+      </div>
+    </div>
+  </section>
+
+  {
+    relatedCaseStudies.length > 0 && (
+      <section class="border-t border-rule bg-paper-soft">
+        <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
+            Related work
+          </p>
+          <h2 class="mt-3 max-w-2xl text-[24px] font-semibold tracking-tight text-ink sm:text-[28px]">
+            Engagements that put this service line into practice.
+          </h2>
+          <div class="mt-8">
+            {relatedCaseStudies.map((cs) => (
+              <CaseStudyCard
+                href={`/work/${cs.data.slug}`}
+                title={cs.data.title}
+                vertical={cs.data.vertical}
+                engagement_year={cs.data.engagement_year}
+                service_line={cs.data.service_line}
+                serviceLabel={serviceTitleByKey.get(cs.data.service_line)}
+              />
+            ))}
+            <div class="border-t border-rule" />
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
