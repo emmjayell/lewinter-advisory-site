@@ -54,6 +54,7 @@ On a financial services software factory running custom development engagements 
 
 Any of the following should prompt a call.
 
+- A customer has asked for your SOC 2 report and you do not know where to start. Your engineering team is heads-down on the next release and cannot absorb a program buildout on top.
 - You are designing a SOC 2 program and do not want to burn a year on a failed first attestation.
 - Your existing program is consuming more internal hours year over year instead of fewer.
 - You already own compliance tooling like Vanta or Drata and are not sure whether you have it configured correctly, what it should be catching, or what to do with the output.

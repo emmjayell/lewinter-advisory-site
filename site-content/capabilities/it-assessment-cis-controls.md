@@ -51,6 +51,7 @@ On a mid-sized resort operator in the Pacific region, approximately six weeks fr
 
 Any of the following should prompt a call.
 
+- A peer operator up the street just survived a ransomware attack and you do not know whether your own cybersecurity posture is where it needs to be.
 - You engaged IT to fix a narrow problem and the investigation has surfaced bigger issues nobody has mapped.
 - You have never had a framework-anchored picture of your security posture, and you are tired of vendor reports that hand you a list without a sequence.
 - You have aging infrastructure, unclear ownership, and a general manager, CFO, or board member asking the right question: what is our actual risk, and what do we do about it first.
