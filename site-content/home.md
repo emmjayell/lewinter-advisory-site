@@ -17,11 +17,11 @@ featured_services:
   - it-business-transformation-advisory  # IT and Business Transformation Advisory
   - fractional-cto-ciso                  # Fractional CTO / CISO
 
-# Case studies featured on the home page, in order.
-# Each entry is the slug of a file in case-studies/.
-featured_case_studies:
-  - soc2-financial-services-software-factory  # Financial Services SOC 2 Software Factory
-  - hospitality-it-audit-cis-controls         # Hospitality IT Audit and CIS Controls Roadmap
+# Capabilities featured on the home page, in order.
+# Each entry is the slug of a file in capabilities/.
+featured_capabilities:
+  - soc2-program-design                       # SOC 2 Type II Program Design for Regulated Software Vendors
+  - it-assessment-cis-controls                # IT Assessment Anchored to CIS Controls for Mid-Market Operators
 ---
 
 Most advisors hand you a report and leave. I run the program with you until it stands on its own.

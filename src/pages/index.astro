@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Headshot from '../components/Headshot.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import CaseStudyCard from '../components/CaseStudyCard.astro';
+import CapabilityCard from '../components/CapabilityCard.astro';
 import { getCollection } from 'astro:content';
 import { loadPage } from '../lib/loadPage';
 
@@ -16,27 +16,27 @@ interface HomeFrontmatter {
   headshot: string;
   headshot_alt: string;
   featured_services: string[];
-  featured_case_studies: string[];
+  featured_capabilities: string[];
 }
 
 const { frontmatter, html } = loadPage<HomeFrontmatter>('site-content/home.md');
 
 const allServices = await getCollection('services', (e) => !e.data.draft);
-const allCaseStudies = await getCollection('caseStudies', (e) => !e.data.draft);
+const allCapabilities = await getCollection('capabilities', (e) => !e.data.draft);
 
 const serviceByKey = new Map(
   allServices.map((s) => [s.data.service_line ?? s.id, s]),
 );
-const caseStudyByKey = new Map(
-  allCaseStudies.map((c) => [c.id, c]),
+const capabilityByKey = new Map(
+  allCapabilities.map((c) => [c.id, c]),
 );
 
 const featuredServices = (frontmatter.featured_services as string[])
   .map((key) => serviceByKey.get(key))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
-const featuredCaseStudies = (frontmatter.featured_case_studies as string[])
-  .map((key) => caseStudyByKey.get(key))
+const featuredCapabilities = (frontmatter.featured_capabilities as string[])
+  .map((key) => capabilityByKey.get(key))
   .filter((c): c is NonNullable<typeof c> => Boolean(c));
 
 const serviceTitleByKey = new Map(
@@ -120,29 +120,29 @@ const serviceTitleByKey = new Map(
       <div class="flex items-end justify-between gap-6">
         <div>
           <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
-            Selected work
+            Capabilities
           </p>
           <h2
             class="mt-3 max-w-2xl text-[26px] font-semibold leading-tight tracking-tight text-ink sm:text-[32px]"
           >
-            Selected engagements, documented in detail.
+            Scoped capabilities you can engage, each with demonstrated outcomes.
           </h2>
         </div>
         <div class="hidden sm:block">
-          <CTA href="/work" label="All case studies" variant="link" />
+          <CTA href="/capabilities" label="All capabilities" variant="link" />
         </div>
       </div>
 
       <div class="mt-10">
         {
-          featuredCaseStudies.map((cs) => (
-            <CaseStudyCard
-              href={`/work/${cs.data.slug}`}
-              title={cs.data.title}
-              vertical={cs.data.vertical}
-              engagement_year={cs.data.engagement_year}
-              service_line={cs.data.service_line}
-              serviceLabel={serviceTitleByKey.get(cs.data.service_line)}
+          featuredCapabilities.map((cap) => (
+            <CapabilityCard
+              href={`/capabilities/${cap.data.slug}`}
+              title={cap.data.title}
+              vertical={cap.data.vertical}
+              engagement_year={cap.data.engagement_year}
+              service_line={cap.data.service_line}
+              serviceLabel={serviceTitleByKey.get(cap.data.service_line)}
             />
           ))
         }
@@ -150,7 +150,7 @@ const serviceTitleByKey = new Map(
       </div>
 
       <div class="mt-8 sm:hidden">
-        <CTA href="/work" label="All case studies" variant="link" />
+        <CTA href="/capabilities" label="All capabilities" variant="link" />
       </div>
     </div>
   </section>

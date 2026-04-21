@@ -4,66 +4,66 @@ import CTA from '../../components/CTA.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const caseStudies = await getCollection('caseStudies', (e) => !e.data.draft);
-  return caseStudies.map((caseStudy) => ({
-    params: { slug: caseStudy.data.slug },
-    props: { caseStudy },
+  const capabilities = await getCollection('capabilities', (e) => !e.data.draft);
+  return capabilities.map((capability) => ({
+    params: { slug: capability.data.slug },
+    props: { capability },
   }));
 }
 
-const { caseStudy } = Astro.props;
-const { Content } = await render(caseStudy);
+const { capability } = Astro.props;
+const { Content } = await render(capability);
 
 const allServices = await getCollection('services', (e) => !e.data.draft);
 const serviceBySlug = new Map(
   allServices.map((s) => [s.data.service_line, s.data]),
 );
 
-const primaryService = serviceBySlug.get(caseStudy.data.service_line);
-const secondaryService = caseStudy.data.secondary_service_line
-  ? serviceBySlug.get(caseStudy.data.secondary_service_line)
+const primaryService = serviceBySlug.get(capability.data.service_line);
+const secondaryService = capability.data.secondary_service_line
+  ? serviceBySlug.get(capability.data.secondary_service_line)
   : undefined;
 
-const verticalLabel = caseStudy.data.vertical
+const verticalLabel = capability.data.vertical
   .split('-')
   .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
   .join(' ');
 ---
 
 <BaseLayout
-  title={caseStudy.data.title}
-  description={caseStudy.data.description ?? caseStudy.data.client_type}
+  title={capability.data.title}
+  description={capability.data.description}
 >
   <section class="border-b border-rule">
     <div class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-24">
       <a
-        href="/work"
+        href="/capabilities"
         class="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-soft hover:text-ink"
       >
-        &larr; Work
+        &larr; Capabilities
       </a>
 
       <div
         class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft"
       >
-        <span>{verticalLabel}</span>
         {
           primaryService && (
             <>
+              <span>{primaryService.title}</span>
               <span class="text-rule" aria-hidden="true">
                 /
               </span>
-              <span>{primaryService.title}</span>
             </>
           )
         }
+        <span>Proof: {verticalLabel}</span>
         {
-          caseStudy.data.engagement_year && (
+          capability.data.engagement_year && (
             <>
               <span class="text-rule" aria-hidden="true">
                 /
               </span>
-              <span>{caseStudy.data.engagement_year}</span>
+              <span>{capability.data.engagement_year}</span>
             </>
           )
         }
@@ -72,7 +72,7 @@ const verticalLabel = caseStudy.data.vertical
       <h1
         class="mt-5 text-[30px] font-semibold leading-tight tracking-tight text-ink sm:text-[40px]"
       >
-        {caseStudy.data.title}
+        {capability.data.title}
       </h1>
     </div>
   </section>
@@ -85,7 +85,7 @@ const verticalLabel = caseStudy.data.vertical
 
       <div class="mt-12 border-t border-rule pt-10">
         <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
-          Services in play
+          Service lines
         </p>
         <div class="mt-4 flex flex-wrap gap-2">
           {
@@ -112,8 +112,8 @@ const verticalLabel = caseStudy.data.vertical
       </div>
 
       <div class="mt-10 flex flex-wrap gap-4">
-        <CTA href="/contact" label="Discuss a similar engagement" />
-        <CTA href="/work" label="See all case studies" variant="link" />
+        <CTA href="/contact" label="Scope an engagement" />
+        <CTA href="/capabilities" label="See all capabilities" variant="link" />
       </div>
     </div>
   </section>

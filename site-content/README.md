@@ -19,10 +19,11 @@ site-content/
     enterprise-architecture-data.md
     it-business-transformation-advisory.md
     fractional-cto-ciso.md
-  case-studies/
-    _index.md                       Case studies overview page
-    soc2-financial-services-software-factory.md
-    hospitality-it-audit-cis-controls.md
+  capabilities/
+    _index.md                       Capabilities overview page
+    soc2-program-design.md
+    it-assessment-cis-controls.md
+    privacy.md                      Privacy page
   shared/
     nav.md                          Nav labels and link targets
     footer.md                       Footer copy
@@ -46,20 +47,21 @@ Every file has YAML frontmatter. Shared fields:
 
 Service pages also have:
 
-- `service_line`: stable slug used to cross-link from case studies
+- `service_line`: stable slug used to cross-link from capabilities
 - `cta_label` and `cta_href`: the primary call to action
 
-Case studies also have:
+Capabilities also have:
 
-- `vertical`: e.g. `financial-services`, `hospitality`, `retail`, `manufacturing`, `life-sciences`, `regulated-mid-market`
-- `service_line`: primary service line the case study proves
+- `vertical`: primary vertical of the proof engagement, e.g. `financial-services`, `hospitality`, `retail`, `manufacturing`, `life-sciences`, `regulated-mid-market`
+- `service_line`: primary service line the capability falls under
 - `secondary_service_line`: optional
+- `engagement_year`: year(s) of the proof engagement
 - `anonymized`: `true` unless the client has given written approval to be named
-- `featured`: `true` puts the case study on the home page
+- `featured`: `true` puts the capability on the home page
 
 ## Slug lists, with readable labels
 
-Some files (`home.md`, `services/_index.md`, `case-studies/_index.md`) contain ordered lists of slugs that point to other files: `featured_services`, `featured_case_studies`, `service_order`, `case_study_order`. Each entry in those lists is followed by a YAML inline comment giving the human-readable label, so the list is easy to read when editing by hand:
+Some files (`home.md`, `services/_index.md`, `capabilities/_index.md`) contain ordered lists of slugs that point to other files: `featured_services`, `featured_capabilities`, `service_order`, `capability_order`. Each entry in those lists is followed by a YAML inline comment giving the human-readable label, so the list is easy to read when editing by hand:
 
 ```
 featured_services:
@@ -78,10 +80,11 @@ When ready to build the site, the deployment code will:
    - `home.md` → `/`
    - `about.md` → `/about`
    - `contact.md` → `/contact`
+   - `privacy.md` → `/privacy`
    - `services/_index.md` → `/services`
    - `services/<name>.md` → `/services/<name>`
-   - `case-studies/_index.md` → `/work`
-   - `case-studies/<name>.md` → `/work/<name>`
+   - `capabilities/_index.md` → `/capabilities`
+   - `capabilities/<name>.md` → `/capabilities/<name>`
 3. Pull nav, footer, and SEO defaults from `shared/`.
 4. Pull brand tokens (Geist typeface, teal `#2A9D9D`, ink `#1A1A1A`) from site config, not from this folder.
 

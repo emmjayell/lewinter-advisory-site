@@ -19,17 +19,15 @@ const services = defineCollection({
   }),
 });
 
-const caseStudies = defineCollection({
-  loader: glob({ pattern: ['*.md', '!_index.md'], base: './site-content/case-studies' }),
+const capabilities = defineCollection({
+  loader: glob({ pattern: ['*.md', '!_index.md'], base: './site-content/capabilities' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
     vertical: z.string(),
     service_line: z.string(),
     secondary_service_line: z.string().optional(),
-    client_type: z.string().optional(),
     engagement_year: z.string().optional(),
-    duration: z.string().optional(),
     anonymized: z.boolean().default(true),
     featured: z.boolean().default(false),
     description: z.string().optional(),
@@ -42,4 +40,4 @@ const shared = defineCollection({
   schema: z.object({}).passthrough(),
 });
 
-export const collections = { services, caseStudies, shared };
+export const collections = { services, capabilities, shared };

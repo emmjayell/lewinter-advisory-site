@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTA from '../../components/CTA.astro';
-import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import CapabilityCard from '../../components/CapabilityCard.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -16,13 +16,13 @@ const { service } = Astro.props;
 const { Content } = await render(service);
 
 const allServices = await getCollection('services', (e) => !e.data.draft);
-const allCaseStudies = await getCollection('caseStudies', (e) => !e.data.draft);
+const allCapabilities = await getCollection('capabilities', (e) => !e.data.draft);
 
 const serviceTitleByKey = new Map(
   allServices.map((s) => [s.data.service_line, s.data.title]),
 );
 
-const relatedCaseStudies = allCaseStudies.filter(
+const relatedCapabilities = allCapabilities.filter(
   (c) =>
     c.data.service_line === service.data.service_line ||
     c.data.secondary_service_line === service.data.service_line,
@@ -66,24 +66,24 @@ const relatedCaseStudies = allCaseStudies.filter(
   </section>
 
   {
-    relatedCaseStudies.length > 0 && (
+    relatedCapabilities.length > 0 && (
       <section class="border-t border-rule bg-paper-soft">
         <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
-            Related work
+            Capabilities
           </p>
           <h2 class="mt-3 max-w-2xl text-[24px] font-semibold tracking-tight text-ink sm:text-[28px]">
-            Engagements that put this service line into practice.
+            Scoped capabilities under this service line.
           </h2>
           <div class="mt-8">
-            {relatedCaseStudies.map((cs) => (
-              <CaseStudyCard
-                href={`/work/${cs.data.slug}`}
-                title={cs.data.title}
-                vertical={cs.data.vertical}
-                engagement_year={cs.data.engagement_year}
-                service_line={cs.data.service_line}
-                serviceLabel={serviceTitleByKey.get(cs.data.service_line)}
+            {relatedCapabilities.map((cap) => (
+              <CapabilityCard
+                href={`/capabilities/${cap.data.slug}`}
+                title={cap.data.title}
+                vertical={cap.data.vertical}
+                engagement_year={cap.data.engagement_year}
+                service_line={cap.data.service_line}
+                serviceLabel={serviceTitleByKey.get(cap.data.service_line)}
               />
             ))}
             <div class="border-t border-rule" />

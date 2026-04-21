@@ -11,8 +11,8 @@ copyright_start_year: 2025
 footer_nav:
   - label: "Services"
     href: "/services"
-  - label: "Work"
-    href: "/work"
+  - label: "Capabilities"
+    href: "/capabilities"
   - label: "About"
     href: "/about"
   - label: "Contact"
