@@ -28,6 +28,7 @@ const services = defineCollection({
     draft: z.boolean().optional(),
     // v3 additions
     meta_title: z.string().optional(), // overrides the <title> tag verbatim
+    hide_hero_cta: z.boolean().optional(), // drop the CTA in the hero (keep the closing one)
     engagement: z
       .object({
         structure: z.string(),

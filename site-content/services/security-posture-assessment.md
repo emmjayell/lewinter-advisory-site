@@ -8,9 +8,9 @@ eyebrow: "Security Posture Assessment"
 subhead: "No mandate, no auditor, no deadline. Just a clear, honest read of your security and a prioritized list of what to fix first. Start small and real, or go all the way to a board-ready roadmap."
 description: "A clear, prioritized read of your security posture. Essential tier on the CIS Controls for a fundable starting point; Comprehensive tier on the NIST CSF for a board-ready roadmap."
 card_blurb: "A clear, honest read of your security with a prioritized list of what to fix first, from a small, fundable starting point up to a board-ready roadmap."
-cta_label: "Start an assessment"
+cta_label: "Contact us to start an assessment"
 cta_href: "/contact"
-cta_microcopy: "Two ways in, depending on where you're starting."
+hide_hero_cta: true
 meta_title: "Security Posture Assessment, CIS & NIST CSF | LeWinter Advisory"
 engagement:
   structure: "Fixed scope, set in writing before we start."

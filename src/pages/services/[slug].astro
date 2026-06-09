@@ -173,14 +173,16 @@ const jsonLd = faqs
       <p class="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted sm:text-[19px]">
         {entry.data.subhead}
       </p>
-      <div class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2">
-        <CTA href={entry.data.cta_href} label={entry.data.cta_label} />
-        {
-          entry.data.cta_microcopy && (
-            <span class="text-[13px] text-ink-soft">{entry.data.cta_microcopy}</span>
-          )
-        }
-      </div>
+      {
+        !entry.data.hide_hero_cta && (
+          <div class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2">
+            <CTA href={entry.data.cta_href} label={entry.data.cta_label} />
+            {entry.data.cta_microcopy && (
+              <span class="text-[13px] text-ink-soft">{entry.data.cta_microcopy}</span>
+            )}
+          </div>
+        )
+      }
     </div>
   </section>
 
