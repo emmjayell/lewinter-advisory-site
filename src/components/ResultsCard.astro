@@ -1,0 +1,47 @@
+---
+// Outcome-first engagement card: bold metric line, a short summary, metadata
+// last. Used on /results and the homepage results teaser.
+interface Props {
+  metric: string;
+  summary: string;
+  meta: string;
+  href: string;
+  cta_label?: string;
+}
+const { metric, summary, meta, href, cta_label = 'Read the engagement' } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group flex h-full flex-col justify-between gap-6 rounded-2xl border border-rule bg-paper p-7 transition-colors hover:border-ink sm:p-8"
+>
+  <div>
+    <p class="text-[20px] font-semibold leading-snug tracking-tight text-ink sm:text-[22px]">
+      {metric}
+    </p>
+    <p class="mt-4 text-[15px] leading-relaxed text-ink-muted">{summary}</p>
+  </div>
+  <div>
+    <p class="text-[12px] uppercase tracking-[0.12em] text-ink-soft">{meta}</p>
+    <span
+      class="mt-3 inline-flex items-center gap-1.5 text-[14px] font-medium tracking-tight text-accent-deep transition-colors group-hover:text-ink"
+    >
+      {cta_label}
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+        class="transition-transform group-hover:translate-x-0.5"
+      >
+        <path
+          d="M3 8h9m0 0L8 4m4 4l-4 4"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </div>
+</a>

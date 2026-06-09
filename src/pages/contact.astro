@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
 import { loadPage } from '../lib/loadPage';
 
 interface ContactFrontmatter {
@@ -8,6 +9,7 @@ interface ContactFrontmatter {
   email: string;
   phone: string;
   response_time: string;
+  booking_url: string;
 }
 
 const { frontmatter, html } = loadPage<ContactFrontmatter>('site-content/contact.md');
@@ -26,6 +28,20 @@ const { frontmatter, html } = loadPage<ContactFrontmatter>('site-content/contact
       </h1>
 
       <div class="prose-editorial mt-10" set:html={html} />
+
+      <!-- Booking block: self-schedule a working call -->
+      <div class="mt-10 rounded-2xl border border-rule bg-paper-soft p-7 sm:p-8">
+        <p class="text-[18px] font-semibold tracking-tight text-ink">
+          Book a working call directly.
+        </p>
+        <p class="mt-2 max-w-xl text-[15px] leading-relaxed text-ink-muted">
+          45 minutes, on Teams, no prep required. Tell me what you're working on and we'll scope the
+          first step on the call.
+        </p>
+        <div class="mt-5">
+          <CTA href={frontmatter.booking_url} label="Book a working call" />
+        </div>
+      </div>
 
       <div class="mt-12 grid gap-8 border-t border-rule pt-10 sm:grid-cols-2">
         <div>

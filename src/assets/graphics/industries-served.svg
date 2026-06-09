@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 300" role="img" aria-label="Industries served: retail, hospitality, health care, banking, insurance, fintech, manufacturing, education, public sector, and warehouse distribution.">
+  <style>text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }</style>
+  <text x="420" y="30" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="1.5" fill="#0D8E8C">INDUSTRIES SERVED</text>
+  <g fill="#F4FAFA" stroke="#CFDCDC" stroke-width="1.4">
+    <rect x="80" y="56" width="64" height="64" rx="14"/><rect x="234" y="56" width="64" height="64" rx="14"/><rect x="388" y="56" width="64" height="64" rx="14"/><rect x="542" y="56" width="64" height="64" rx="14"/><rect x="696" y="56" width="64" height="64" rx="14"/>
+    <rect x="80" y="176" width="64" height="64" rx="14"/><rect x="234" y="176" width="64" height="64" rx="14"/><rect x="388" y="176" width="64" height="64" rx="14"/><rect x="542" y="176" width="64" height="64" rx="14"/><rect x="696" y="176" width="64" height="64" rx="14"/>
+  </g>
+  <g fill="none" stroke="#0D8E8C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Retail: shopping bag (cx112,cy88) -->
+    <path d="M98 84 L126 84 L123 106 L101 106 Z"/><path d="M105 84 a7 7 0 0 1 14 0"/>
+    <!-- Hospitality: concierge bell (cx266,cy88) -->
+    <path d="M250 96 a16 12 0 0 1 32 0"/><path d="M247 96 H285"/><circle cx="266" cy="80" r="2.2"/><path d="M266 100 v4"/>
+    <!-- Health Care: cross (cx420,cy88) -->
+    <path d="M416 74 H424 V84 H434 V92 H424 V102 H416 V92 H406 V84 H416 Z"/>
+    <!-- Banking: columns building (cx574,cy88) -->
+    <path d="M556 82 L574 70 L592 82"/><path d="M560 82 V102 M574 82 V102 M588 82 V102"/><path d="M553 102 H595"/>
+    <!-- Insurance: umbrella (cx728,cy88) -->
+    <path d="M712 92 a16 13 0 0 1 32 0 Z"/><path d="M728 92 V106"/><path d="M728 106 a5 4 0 0 0 7 2"/>
+    <!-- Fintech: card + chip (cx112,cy208) -->
+    <rect x="94" y="196" width="36" height="24" rx="3"/><rect x="100" y="202" width="9" height="7" rx="1"/><path d="M100 214 H124"/>
+    <!-- Manufacturing: factory (cx266,cy208) -->
+    <path d="M250 218 V200 L258 206 V200 L266 206 V200 L274 206 V218 Z"/><path d="M278 218 V192"/>
+    <!-- Education: grad cap (cx420,cy208) -->
+    <path d="M420 196 L440 204 L420 212 L400 204 Z"/><path d="M410 208 v5 a10 4 0 0 0 20 0 v-5"/><path d="M440 204 v9"/>
+    <!-- Public Sector: capitol dome (cx574,cy208) -->
+    <path d="M574 188 v-4"/><path d="M566 198 a8 9 0 0 1 16 0"/><path d="M560 198 H588"/><path d="M564 198 V216 M574 198 V216 M584 198 V216"/><path d="M556 216 H592"/>
+    <!-- Warehouse & distribution: warehouse (cx728,cy208) -->
+    <path d="M710 216 V200 L728 190 L746 200 V216"/><rect x="721" y="206" width="14" height="10"/>
+  </g>
+  <g font-size="13.5" text-anchor="middle" fill="#142A2E">
+    <text x="112" y="142">Retail</text><text x="266" y="142">Hospitality</text><text x="420" y="142">Health Care</text><text x="574" y="142">Banking</text><text x="728" y="142">Insurance</text>
+    <text x="112" y="262">Fintech</text><text x="266" y="262">Manufacturing</text><text x="420" y="262">Education</text><text x="574" y="262">Public Sector</text><text x="728" y="262">Warehouse &amp; Dist.</text>
+  </g>
+</svg>

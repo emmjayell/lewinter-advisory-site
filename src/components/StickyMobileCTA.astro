@@ -1,0 +1,45 @@
+---
+// Sticky bottom booking bar for mobile, site-wide. Hidden until the visitor
+// scrolls past the hero, then slides in. Booking URL mirrors the nav CTA.
+import { getEntry } from 'astro:content';
+
+const navEntry = await getEntry('shared', 'nav');
+const nav = navEntry!.data as { cta_label: string; cta_href: string };
+const external = /^https?:\/\//.test(nav.cta_href);
+---
+
+<div
+  id="sticky-cta"
+  class="pointer-events-none fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-rule bg-paper/95 p-3 backdrop-blur transition-transform duration-300 md:hidden"
+  style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));"
+>
+  <a
+    href={nav.cta_href}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+    class="flex w-full items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-[15px] font-medium tracking-tight text-paper"
+  >
+    {nav.cta_label}
+    <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path
+        d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
+</div>
+
+<script>
+  const bar = document.getElementById('sticky-cta');
+  if (bar) {
+    const onScroll = () => {
+      const show = window.scrollY > 600;
+      bar.classList.toggle('translate-y-full', !show);
+      bar.classList.toggle('pointer-events-none', !show);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

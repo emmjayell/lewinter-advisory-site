@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" role="img" aria-label="Verified Vanta Admin, Vanta Academy.">
+  <style>
+    text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
+  <rect x="2" y="2" width="356" height="96" rx="16" fill="#F4FAFA" stroke="#0D8E8C" stroke-width="2"/>
+  <g transform="translate(24, 24)">
+    <circle cx="26" cy="26" r="24" fill="none" stroke="#0D8E8C" stroke-width="2.6"/>
+    <path d="M 14 27 l 8 8 16 -18" fill="none" stroke="#0D8E8C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 49 -2 l 1.8 4.6 4.6 1.8 -4.6 1.8 -1.8 4.6 -1.8 -4.6 -4.6 -1.8 4.6 -1.8 z" fill="#36C9C6"/>
+  </g>
+  <text x="100" y="44" font-size="19" font-weight="700" fill="#142A2E">Verified Vanta Admin</text>
+  <text x="100" y="68" font-size="11.5" fill="#7E9496">Vanta Academy. Automated SOC 2,</text>
+  <text x="100" y="83" font-size="11.5" fill="#7E9496">ISO 27001 &amp; continuous compliance.</text>
+</svg>

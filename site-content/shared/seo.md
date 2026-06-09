@@ -1,10 +1,10 @@
 ---
 site_name: "LeWinter Advisory"
-default_title: "LeWinter Advisory. Technology and cybersecurity advisory"
+default_title: "LeWinter Advisory. When compliance, cybersecurity, and AI collide with reality"
 title_template: "%s | LeWinter Advisory"
-default_description: "Independent technology and cybersecurity advisory led by Mike LeWinter, CISSP. Assessments, architecture, and fractional CTO/CISO across Financial Services, Hospitality, Manufacturing, and Retail."
+default_description: "Advisory-led cybersecurity, compliance, data privacy, AI, infrastructure, and incident response. Led by Mike LeWinter, CISSP. One accountable point of contact, work built to hold up under scrutiny."
 canonical_base: "https://lewinteradvisory.com"
-og_image: "/og-default.png"
+og_image: "/og-lewinter-advisory.png"
 twitter_card: "summary_large_image"
 locale: "en_US"
 ---

@@ -10,6 +10,8 @@ const nav = navEntry!.data as {
   cta_href: string;
 };
 
+const ctaExternal = /^https?:\/\//.test(nav.cta_href);
+
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 function isActive(href: string) {
   const normalized = href.replace(/\/$/, '') || '/';
@@ -46,6 +48,8 @@ function isActive(href: string) {
       }
       <a
         href={nav.cta_href}
+        target={ctaExternal ? '_blank' : undefined}
+        rel={ctaExternal ? 'noopener noreferrer' : undefined}
         class="rounded-full border border-ink bg-ink px-4 py-1.5 text-[13px] font-medium tracking-tight text-paper transition-colors hover:border-accent-deep hover:bg-accent-deep"
       >
         {nav.cta_label}
@@ -92,6 +96,8 @@ function isActive(href: string) {
       }
       <a
         href={nav.cta_href}
+        target={ctaExternal ? '_blank' : undefined}
+        rel={ctaExternal ? 'noopener noreferrer' : undefined}
         class="self-start rounded-full border border-ink bg-ink px-4 py-2 text-[14px] font-medium text-paper"
       >
         {nav.cta_label}

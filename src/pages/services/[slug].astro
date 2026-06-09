@@ -1,89 +1,271 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTA from '../../components/CTA.astro';
-import CapabilityCard from '../../components/CapabilityCard.astro';
-import { getCollection, render } from 'astro:content';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { getCollection } from 'astro:content';
+import { loadPage } from '../../lib/loadPage';
+import { renderMarkdown } from '../../lib/markdown';
+
+// Per-page diagrams, inlined so the Geist cascade reaches the SVG text.
+import asmTracks from '../../assets/graphics/assessment-tracks.svg?raw';
+import remediationRoadmap from '../../assets/graphics/remediation-roadmap.svg?raw';
+import soc2Journey from '../../assets/graphics/soc2-journey.svg?raw';
+import privacyGap from '../../assets/graphics/privacy-gap.svg?raw';
+import vcisoCadence from '../../assets/graphics/vciso-cadence.svg?raw';
+import incidentCommand from '../../assets/graphics/incident-command.svg?raw';
 
 export async function getStaticPaths() {
-  const services = await getCollection('services', (e) => !e.data.draft);
-  return services.map((service) => ({
-    params: { slug: service.data.slug },
-    props: { service },
+  const entries = await getCollection('services', (e) => !e.data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
   }));
 }
 
-const { service } = Astro.props;
-const { Content } = await render(service);
+const { entry } = Astro.props;
+const slug = entry.data.slug;
 
-const allServices = await getCollection('services', (e) => !e.data.draft);
-const allCapabilities = await getCollection('capabilities', (e) => !e.data.draft);
+const all = await getCollection('services', (e) => !e.data.draft);
+const isPillar = entry.data.type === 'pillar';
 
-const serviceTitleByKey = new Map(
-  allServices.map((s) => [s.data.service_line, s.data.title]),
-);
+// Pillar pages list their child services as front-door cards.
+const children = isPillar
+  ? all
+      .filter((e) => e.data.type === 'service' && e.data.pillar === entry.data.slug)
+      .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  : [];
 
-const relatedCapabilities = allCapabilities.filter(
-  (c) =>
-    c.data.service_line === service.data.service_line ||
-    c.data.secondary_service_line === service.data.service_line,
-);
+// Service pages link back to their parent pillar and show sibling services.
+const parent = !isPillar
+  ? all.find((e) => e.data.type === 'pillar' && e.data.slug === entry.data.pillar)
+  : undefined;
+
+const siblings = !isPillar
+  ? all
+      .filter(
+        (e) =>
+          e.data.type === 'service' &&
+          e.data.pillar === entry.data.pillar &&
+          e.data.slug !== entry.data.slug,
+      )
+      .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  : [];
+
+const backHref = parent ? `/services/${parent.data.slug}` : '/services';
+const backLabel = parent ? parent.data.eyebrow : 'Services';
+
+// Render the body ourselves (with GitHub-style heading ids preserved) so the
+// display quote and the per-page diagram can be injected at exact positions.
+const { body } = loadPage(`site-content/services/${slug}.md`);
+let bodyHtml = renderMarkdown(body);
+
+const fig = (raw: string) => `<figure class="fig">${raw}</figure>`;
+const quote = (text: string) => `<div class="display-quote"><p>${text}</p></div>`;
+const before = (html: string, id: string, insert: string) =>
+  html.replace(`<h2 id="${id}">`, `${insert}<h2 id="${id}">`);
+
+if (slug === 'security-posture-assessment') {
+  bodyHtml = before(bodyHtml, 'what-we-do', quote("You can't fix what you haven't named."));
+  bodyHtml = before(bodyHtml, 'what-you-get', fig(asmTracks));
+  bodyHtml = before(bodyHtml, 'who-this-is-for', fig(remediationRoadmap));
+} else if (slug === 'soc2-readiness-sprint') {
+  bodyHtml = before(
+    bodyHtml,
+    'what-we-do',
+    quote(
+      'Optimize for passing and you get a certificate that doesn&rsquo;t mean much. Optimize for being secure and the certificate takes care of itself.',
+    ),
+  );
+  bodyHtml = before(bodyHtml, 'type-i-or-type-ii', fig(soc2Journey));
+} else if (slug === 'website-digital-privacy-review') {
+  bodyHtml = before(
+    bodyHtml,
+    'what-we-do-differently',
+    quote('The policy is the promise, and the site is the evidence you broke it.') + fig(privacyGap),
+  );
+} else if (slug === 'fractional-vciso') {
+  bodyHtml = before(
+    bodyHtml,
+    'what-we-do',
+    quote('It works until it doesn&rsquo;t, usually at the worst possible moment.'),
+  );
+  bodyHtml = bodyHtml.replace(
+    '<h2 id="how-it-works">How it works</h2>',
+    `<h2 id="how-it-works">How it works</h2>${fig(vcisoCadence)}`,
+  );
+} else if (slug === 'incident-response-coordination') {
+  bodyHtml = before(
+    bodyHtml,
+    'what-we-do',
+    quote("The scarce resource isn't expertise. It's command."),
+  );
+  bodyHtml = before(bodyHtml, 'how-we-work-an-incident', fig(incidentCommand));
+} else if (slug === 'manufacturing-ot-assessment') {
+  bodyHtml = before(bodyHtml, 'what-we-do', quote('Most security consultants are tourists in it.'));
+}
+
+const titleTag = entry.data.meta_title;
+const eng = entry.data.engagement;
+
+// FAQPage schema built from the page's own questions, for the two pages that
+// carry them.
+const faqBySlug: Record<string, { q: string; a: string }[]> = {
+  'security-posture-assessment': [
+    {
+      q: 'Essential or Comprehensive, which assessment do I need?',
+      a: 'The Essential assessment maps to the CIS Controls for organizations starting from zero; the Comprehensive assessment builds on the NIST Cybersecurity Framework for a board-ready picture. They work at different layers, and the smart engagement uses both.',
+    },
+    {
+      q: 'Who is a security posture assessment for?',
+      a: 'You run or help run a small or mid-sized organization, want to stop guessing and start knowing, with a first step you can fund without a fight and a path you can grow into.',
+    },
+  ],
+  'soc2-readiness-sprint': [
+    {
+      q: 'Do I need SOC 2 Type I or Type II?',
+      a: 'Type I assesses whether your controls are designed correctly at a point in time; Type II assesses whether those controls actually operated effectively over a period of months. I help you decide which you need now, and sequence toward the other if that is the right path.',
+    },
+    {
+      q: 'Who is the SOC 2 readiness sprint for?',
+      a: 'SaaS companies, service providers, or any business whose customers are starting to demand proof you can be trusted with their data, usually with a deadline tied to a deal, a renewal, or a round.',
+    },
+  ],
+};
+const faqs = faqBySlug[slug];
+const jsonLd = faqs
+  ? [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+    ]
+  : [];
 ---
 
 <BaseLayout
-  title={service.data.title}
-  description={service.data.description}
+  title={titleTag ?? entry.data.title}
+  description={entry.data.description}
+  titleOverride={!!titleTag}
+  jsonLd={jsonLd}
 >
+  <!-- Hero -->
   <section class="border-b border-rule">
     <div class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-24">
       <a
-        href="/services"
+        href={backHref}
         class="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-soft hover:text-ink"
       >
-        &larr; Services
+        &larr; {backLabel}
       </a>
-      <h1
-        class="mt-6 text-[32px] font-semibold leading-tight tracking-tight text-ink sm:text-[40px]"
-      >
-        {service.data.title}
-      </h1>
-      <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-        {service.data.description}
+      <p class="mt-6 text-[11px] font-medium uppercase tracking-[0.16em] text-accent-deep">
+        {entry.data.eyebrow}
       </p>
+      <h1
+        class="mt-4 text-[30px] font-semibold leading-[1.12] tracking-tight text-ink sm:text-[42px]"
+      >
+        {entry.data.title}
+      </h1>
+      <p class="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted sm:text-[19px]">
+        {entry.data.subhead}
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2">
+        <CTA href={entry.data.cta_href} label={entry.data.cta_label} />
+        {
+          entry.data.cta_microcopy && (
+            <span class="text-[13px] text-ink-soft">{entry.data.cta_microcopy}</span>
+          )
+        }
+      </div>
     </div>
   </section>
 
+  <!-- Pillar: front-door child services -->
+  {
+    isPillar && children.length > 0 && (
+      <section class="border-b border-rule bg-paper-soft">
+        <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
+            Where to start
+          </p>
+          <h2 class="mt-3 max-w-2xl text-[24px] font-semibold tracking-tight text-ink sm:text-[28px]">
+            The productized front doors into this practice.
+          </h2>
+          <div class="mt-8">
+            {children.map((child, i) => (
+              <ServiceCard
+                href={`/services/${child.data.slug}`}
+                title={child.data.title}
+                description={child.data.card_blurb ?? child.data.description}
+                index={i}
+              />
+            ))}
+            <div class="border-t border-rule" />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Body -->
   <section>
     <div class="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
-      <div class="prose-editorial">
-        <Content />
-      </div>
+      <div class="prose-editorial" set:html={bodyHtml} />
 
-      <div class="mt-12 flex flex-wrap gap-4">
-        <CTA href={service.data.cta_href} label={service.data.cta_label} />
-        <CTA href="/services" label="See all services" variant="link" />
+      {
+        eng && (
+          <dl class="mt-12 grid gap-px overflow-hidden rounded-xl border border-rule bg-rule sm:grid-cols-3">
+            <div class="bg-paper p-5">
+              <dt class="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
+                Structure
+              </dt>
+              <dd class="mt-2 text-[14px] leading-snug text-ink">{eng.structure}</dd>
+            </div>
+            <div class="bg-paper p-5">
+              <dt class="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
+                You get
+              </dt>
+              <dd class="mt-2 text-[14px] leading-snug text-ink">{eng.you_get}</dd>
+            </div>
+            <div class="bg-paper p-5">
+              <dt class="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
+                Afterward
+              </dt>
+              <dd class="mt-2 text-[14px] leading-snug text-ink">{eng.afterward}</dd>
+            </div>
+          </dl>
+        )
+      }
+
+      <div class="mt-12 flex flex-wrap gap-x-5 gap-y-3">
+        <CTA href={entry.data.cta_href} label={entry.data.cta_label} />
+        <CTA href={backHref} label={`Back to ${backLabel}`} variant="link" />
       </div>
     </div>
   </section>
 
+  <!-- Service: sibling offerings in the same pillar -->
   {
-    relatedCapabilities.length > 0 && (
+    !isPillar && siblings.length > 0 && (
       <section class="border-t border-rule bg-paper-soft">
         <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
-            Capabilities
+            {parent?.data.eyebrow}
           </p>
           <h2 class="mt-3 max-w-2xl text-[24px] font-semibold tracking-tight text-ink sm:text-[28px]">
-            Scoped capabilities under this service line.
+            More in this practice.
           </h2>
           <div class="mt-8">
-            {relatedCapabilities.map((cap) => (
-              <CapabilityCard
-                href={`/capabilities/${cap.data.slug}`}
-                title={cap.data.title}
-                vertical={cap.data.vertical}
-                engagement_year={cap.data.engagement_year}
-                service_line={cap.data.service_line}
-                serviceLabel={serviceTitleByKey.get(cap.data.service_line)}
+            {siblings.map((sib, i) => (
+              <ServiceCard
+                href={`/services/${sib.data.slug}`}
+                title={sib.data.title}
+                description={sib.data.card_blurb ?? sib.data.description}
+                index={i}
               />
             ))}
             <div class="border-t border-rule" />

@@ -1,18 +1,18 @@
 ---
 legal_name: "LeWinter Advisory LLC"
-tagline: "Independent technology and cybersecurity advisory."
-email: "mike@lewinteradvisory.com"
-phone: "805.342.5066"
-location: "Nipomo, California"
+tagline: "Advisory-led cybersecurity, compliance, privacy, AI, and infrastructure. One accountable point of contact."
+email: "info@lewinteradvisory.com"
+phone: "805.619.9177"
+location: "San Luis Obispo, California"
 social:
   - label: "LinkedIn"
     href: "https://linkedin.com/in/mikelewinter"
 copyright_start_year: 2025
 footer_nav:
+  - label: "Home"
+    href: "/"
   - label: "Services"
     href: "/services"
-  - label: "Capabilities"
-    href: "/capabilities"
   - label: "About"
     href: "/about"
   - label: "Contact"

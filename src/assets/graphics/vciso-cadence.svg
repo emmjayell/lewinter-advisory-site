@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" role="img" aria-label="One month of vCISO engagement. Weekly working sessions, written positions as produced, an executive or board update, and on-call coverage running continuously underneath.">
+  <style>
+    text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
+
+  <!-- Week labels -->
+  <g text-anchor="middle" font-size="12.5" font-weight="600" fill="#7E9496" letter-spacing="1">
+    <text x="125" y="76">WEEK 1</text>
+    <text x="295" y="76">WEEK 2</text>
+    <text x="465" y="76">WEEK 3</text>
+    <text x="635" y="76">WEEK 4</text>
+  </g>
+
+  <!-- Week cells -->
+  <rect x="40" y="86" width="170" height="68" rx="10" fill="#FFFFFF" stroke="#CFDCDC" stroke-width="2"/>
+  <rect x="210" y="86" width="170" height="68" rx="10" fill="#FFFFFF" stroke="#CFDCDC" stroke-width="2"/>
+  <rect x="380" y="86" width="170" height="68" rx="10" fill="#FFFFFF" stroke="#CFDCDC" stroke-width="2"/>
+  <rect x="550" y="86" width="170" height="68" rx="10" fill="#FFFFFF" stroke="#CFDCDC" stroke-width="2"/>
+
+  <!-- Weekly session dots -->
+  <circle cx="72" cy="120" r="7" fill="#0D8E8C"/>
+  <circle cx="242" cy="120" r="7" fill="#0D8E8C"/>
+  <circle cx="412" cy="120" r="7" fill="#0D8E8C"/>
+  <circle cx="582" cy="120" r="7" fill="#0D8E8C"/>
+
+  <!-- Written position docs (week 2 and 3) -->
+  <g>
+    <path d="M 300 106 h 12 l 6 6 v 18 h -18 z" fill="#F4FAFA" stroke="#142A2E" stroke-width="1.6" stroke-linejoin="round"/>
+    <line x1="304" y1="120" x2="313" y2="120" stroke="#142A2E" stroke-width="1.4"/>
+    <line x1="304" y1="125" x2="313" y2="125" stroke="#142A2E" stroke-width="1.4"/>
+    <path d="M 470 106 h 12 l 6 6 v 18 h -18 z" fill="#F4FAFA" stroke="#142A2E" stroke-width="1.6" stroke-linejoin="round"/>
+    <line x1="474" y1="120" x2="483" y2="120" stroke="#142A2E" stroke-width="1.4"/>
+    <line x1="474" y1="125" x2="483" y2="125" stroke="#142A2E" stroke-width="1.4"/>
+  </g>
+
+  <!-- Board diamond (week 4) -->
+  <rect x="664" y="111" width="17" height="17" transform="rotate(45 672.5 119.5)" fill="#085451"/>
+
+  <!-- On-call line -->
+  <line x1="52" y1="170" x2="708" y2="170" stroke="#36C9C6" stroke-width="2.4" stroke-linecap="round"/>
+  <text x="380" y="190" text-anchor="middle" font-size="12.5" fill="#7E9496">on call the whole way</text>
+
+  <!-- Legend -->
+  <g font-size="11.5" fill="#142A2E">
+    <circle cx="78" cy="218" r="6" fill="#0D8E8C"/>
+    <text x="92" y="222">Weekly working session</text>
+
+    <path d="M 268 209 h 9 l 5 5 v 13 h -14 z" fill="#F4FAFA" stroke="#142A2E" stroke-width="1.4" stroke-linejoin="round"/>
+    <text x="296" y="222">Written positions, as produced</text>
+
+    <rect x="488" y="212" width="12" height="12" transform="rotate(45 494 218)" fill="#085451"/>
+    <text x="510" y="222">Board update</text>
+
+    <line x1="624" y1="218" x2="650" y2="218" stroke="#36C9C6" stroke-width="2.4" stroke-linecap="round"/>
+    <text x="658" y="222" font-size="11.5" fill="#142A2E">On call</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="380" y="256" text-anchor="middle" font-size="13.5" fill="#142A2E">Scales up ahead of an audit or a round. Eases back once the program runs smooth.</text>
+</svg>

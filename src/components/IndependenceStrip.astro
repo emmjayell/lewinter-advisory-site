@@ -1,0 +1,27 @@
+---
+// A single quiet band of trust signals, middle-dot separated.
+const items = [
+  'Independent',
+  'Fixed fee with written scope',
+  'No reseller commissions',
+  'One principal, no account layer',
+];
+---
+
+<ul
+  class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-ink-soft"
+  aria-label="How I work"
+>
+  {
+    items.map((item, i) => (
+      <li class="flex items-center gap-x-3">
+        {i > 0 && (
+          <span aria-hidden="true" class="text-ink-soft/50">
+            &middot;
+          </span>
+        )}
+        {item}
+      </li>
+    ))
+  }
+</ul>

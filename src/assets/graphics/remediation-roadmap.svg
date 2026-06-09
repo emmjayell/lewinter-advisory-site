@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" role="img" aria-label="Remediation roadmap, a rising path to better defense. Assess where you stand, then quick wins like MFA, patching and backups, then close the gaps, then build the program, ending at audit-ready and maintained.">
+  <style>
+    text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
+  <path d="M 56 250 L 700 92" fill="none" stroke="#E2EEEE" stroke-width="22" stroke-linecap="round"/>
+  <path d="M 56 250 L 700 92" fill="none" stroke="#36C9C6" stroke-width="2" stroke-dasharray="6 8"/>
+  <g>
+    <circle cx="86" cy="243" r="8" fill="#0D8E8C"/>
+    <circle cx="236" cy="206" r="8" fill="#0D8E8C"/>
+    <circle cx="386" cy="170" r="8" fill="#0D8E8C"/>
+    <circle cx="536" cy="133" r="8" fill="#0D8E8C"/>
+    <circle cx="690" cy="95" r="10" fill="#085451"/>
+    <circle cx="690" cy="95" r="15" fill="none" stroke="#36C9C6" stroke-width="2"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="86" y="276" font-size="14" font-weight="600" fill="#142A2E">Assess</text>
+    <text x="86" y="293" font-size="12.5" fill="#7E9496">where you stand</text>
+
+    <text x="236" y="240" font-size="14" font-weight="600" fill="#142A2E">Quick wins</text>
+    <text x="236" y="257" font-size="12.5" fill="#7E9496">MFA · patching · backups</text>
+
+    <text x="386" y="204" font-size="14" font-weight="600" fill="#142A2E">Close the gaps</text>
+    <text x="386" y="221" font-size="12.5" fill="#7E9496">structural fixes</text>
+
+    <text x="536" y="96" font-size="14" font-weight="600" fill="#142A2E">Build the program</text>
+    <text x="536" y="113" font-size="12.5" fill="#7E9496">governance &amp; cadence</text>
+
+    <text x="690" y="52" font-size="14" font-weight="600" fill="#085451">Audit-ready</text>
+    <text x="690" y="69" font-size="12.5" fill="#7E9496">&amp; maintained</text>
+  </g>
+  <text x="40" y="300" font-size="12.5" fill="#7E9496" transform="rotate(-90 40 300)">defense up, risk down →</text>
+  <text x="380" y="314" text-anchor="middle" font-size="14" fill="#142A2E">A prioritized path, not a pile of findings. Every step lowers risk.</text>
+</svg>

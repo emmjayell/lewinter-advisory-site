@@ -118,3 +118,117 @@
     font-size: 0.95em;
   }
 }
+
+/* Inlined brand illustrations: scale to their container and inherit Geist. */
+.illus svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.illus text,
+.illus tspan {
+  font-family: var(--font-sans);
+}
+
+/* Shared wrapper for inline diagrams: centered, capped so their text renders
+   near the drawn size. */
+.diagram {
+  width: 100%;
+  max-width: 700px;
+  margin: 1.5rem auto;
+}
+
+/* Pillar-page section headings are anchor targets from the /services cards;
+   keep them off the top edge when jumped to. */
+.prose-editorial :is(h2, h3) {
+  scroll-margin-top: 5rem;
+}
+
+/* Inline page diagrams embedded in markdown bodies. Centered, capped width,
+   designed to survive grayscale printing (no shadows or gradients). The Geist
+   cascade must reach SVG text so the labels match the rest of the page. */
+.fig {
+  margin: 2.25rem auto;
+  max-width: 700px;
+}
+.fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.prose-editorial svg text,
+.prose-editorial svg tspan,
+.fig svg text,
+.fig svg tspan {
+  font-family: var(--font-sans);
+}
+
+/* Credential badges (about page). All three share a 360x100 viewBox and fill
+   their grid cell, so they render at identical dimensions. */
+.badge svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.badge svg text,
+.badge svg tspan {
+  font-family: var(--font-sans);
+}
+
+/* Oversized display quote, one per solution detail page. */
+.display-quote {
+  margin: 2.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--color-accent);
+}
+.display-quote p {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+@media (min-width: 640px) {
+  .display-quote p {
+    font-size: 2rem;
+  }
+}
+
+/* Quiet metadata chip rows (industries, frameworks). The descendant-of-prose
+   selectors win over .prose-editorial's generic list styling. */
+.chip-label {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+.chip-row,
+.prose-editorial .chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.chip-row > li,
+.prose-editorial .chip-row > li {
+  padding: 0.3rem 0.7rem;
+  margin: 0;
+  border: 1px solid var(--color-rule);
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  color: var(--color-ink-muted);
+  background: var(--color-paper);
+}
+.prose-editorial .chip-row > li::before {
+  content: none;
+}
+.chip-row.chip-row--quiet > li,
+.prose-editorial .chip-row.chip-row--quiet > li {
+  background: var(--color-paper-soft);
+  color: var(--color-ink-soft);
+}

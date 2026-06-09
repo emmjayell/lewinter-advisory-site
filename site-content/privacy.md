@@ -9,7 +9,7 @@ This page describes how LeWinter Advisory LLC handles information collected thro
 
 ## Who we are
 
-LeWinter Advisory LLC is an independent technology and cybersecurity advisory practice based in Nipomo, California. The practice is operated by Mike LeWinter.
+LeWinter Advisory LLC is an independent technology and cybersecurity advisory practice based in San Luis Obispo, California. The practice is operated by Mike LeWinter.
 
 ## What this site collects
 
@@ -29,7 +29,7 @@ I do not sell personal information. I do not share it with third parties except 
 
 ## Client engagement confidentiality
 
-Client work is confidential by default. Case studies published on this site are anonymized unless the client has given written approval to be named. Findings, evidence, and deliverables produced during an engagement are treated as the client's confidential information and are not shared outside the engagement without written authorization.
+Client work is confidential by default. Any client work referenced on this site is anonymized unless the client has given written approval to be named. Findings, evidence, and deliverables produced during an engagement are treated as the client's confidential information and are not shared outside the engagement without written authorization.
 
 ## Your rights
 
@@ -44,9 +44,9 @@ Engagement records are retained for the period required by applicable profession
 Questions about this notice, or requests related to your information, should go to:
 
 **LeWinter Advisory LLC**
-mike@lewinteradvisory.com
-805.342.5066
-Nipomo, California
+info@lewinteradvisory.com
+805.619.9177
+San Luis Obispo, California
 
 ## Changes
 

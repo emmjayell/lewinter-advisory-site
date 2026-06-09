@@ -1,0 +1,65 @@
+---
+// Homepage proof bar: four verified-outcome tiles. Desktop four-across,
+// mobile 2x2 (never a single compressed row). Above the fold, so inlined.
+interface Tile {
+  stat: string;
+  line: string;
+  href?: string;
+}
+interface Props {
+  kicker?: string;
+  tiles: Tile[];
+}
+const { kicker, tiles } = Astro.props;
+---
+
+<section class="border-b border-rule bg-paper">
+  <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
+    {
+      kicker && (
+        <p class="mb-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+          {kicker}
+        </p>
+      )
+    }
+    <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      {
+        tiles.map((tile) => {
+          const inner = (
+            <>
+              <p class="text-[22px] font-semibold leading-tight tracking-tight text-ink sm:text-[26px]">
+                {tile.stat}
+              </p>
+              <p class="mt-2 text-[13px] leading-snug text-ink-muted sm:text-[13.5px]">
+                {tile.line}
+              </p>
+              {tile.href && (
+                <span class="mt-3 inline-flex items-center gap-1 text-[12px] font-medium text-accent-deep">
+                  See the engagement
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path
+                      d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
+                      stroke="currentColor"
+                      stroke-width="1.25"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              )}
+            </>
+          );
+          const cls =
+            'flex h-full flex-col rounded-2xl border border-[#E2EEEE] bg-[#F4FAFA] p-5 sm:p-6';
+          return tile.href ? (
+            <a href={tile.href} class={`group transition-colors hover:border-[#CFE6E5] ${cls}`}>
+              {inner}
+            </a>
+          ) : (
+            <div class={cls}>{inner}</div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

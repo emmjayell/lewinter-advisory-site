@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-label="SOC 2 program sequence. Scope the boundary, build the operating rhythm, wire the tooling, pick the auditor last, design for year two. A second line shows internal audit burden declining from year one to year two.">
+  <style>
+    text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
+
+  <!-- Contrarian tag above node 4 -->
+  <rect x="454" y="18" width="152" height="24" rx="12" fill="#085451"/>
+  <text x="530" y="34" text-anchor="middle" font-size="11.5" font-weight="600" fill="#7FE9E6">the step most get wrong</text>
+  <line x1="530" y1="42" x2="530" y2="56" stroke="#085451" stroke-width="1.6"/>
+
+  <!-- Step labels -->
+  <g text-anchor="middle">
+    <text x="80" y="78" font-size="13" font-weight="600" fill="#142A2E">Scope the boundary</text>
+    <text x="80" y="95" font-size="12.5" fill="#7E9496">draw the audit line</text>
+
+    <text x="230" y="78" font-size="13" font-weight="600" fill="#142A2E">Build the rhythm</text>
+    <text x="230" y="95" font-size="12.5" fill="#7E9496">controls that operate</text>
+
+    <text x="380" y="78" font-size="13" font-weight="600" fill="#142A2E">Wire the tooling</text>
+    <text x="380" y="95" font-size="12.5" fill="#7E9496">evidence on autopilot</text>
+
+    <text x="530" y="78" font-size="13" font-weight="600" fill="#085451">Auditor last</text>
+    <text x="530" y="95" font-size="12.5" fill="#7E9496">scoped to what exists</text>
+
+    <text x="680" y="78" font-size="13" font-weight="600" fill="#142A2E">Design for year two</text>
+    <text x="680" y="95" font-size="12.5" fill="#7E9496">renewal, not fire drill</text>
+  </g>
+
+  <!-- Timeline -->
+  <line x1="50" y1="130" x2="710" y2="130" stroke="#CFDCDC" stroke-width="2"/>
+  <circle cx="80" cy="130" r="7" fill="#0D8E8C"/>
+  <circle cx="230" cy="130" r="7" fill="#0D8E8C"/>
+  <circle cx="380" cy="130" r="7" fill="#0D8E8C"/>
+  <circle cx="530" cy="130" r="9" fill="#085451"/>
+  <circle cx="530" cy="130" r="14" fill="none" stroke="#36C9C6" stroke-width="2"/>
+  <circle cx="680" cy="130" r="7" fill="#0D8E8C"/>
+
+  <!-- Burden trend line -->
+  <path d="M 80 196 C 280 200, 480 236, 680 242" fill="none" stroke="#36C9C6" stroke-width="2.4" stroke-dasharray="7 6" stroke-linecap="round"/>
+  <circle cx="80" cy="196" r="5" fill="#36C9C6"/>
+  <circle cx="680" cy="242" r="5" fill="#36C9C6"/>
+  <text x="80" y="182" text-anchor="middle" font-size="12.5" fill="#7E9496">year one</text>
+  <text x="680" y="264" text-anchor="middle" font-size="12.5" fill="#7E9496">year two</text>
+  <text x="380" y="288" text-anchor="middle" font-size="13.5" fill="#142A2E">Internal audit burden goes down, because the program is real, not performed.</text>
+</svg>

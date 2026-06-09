@@ -1,0 +1,96 @@
+---
+// One of the four practice-pillar cards. Two modes:
+//   - solutions (default): the /services card, listing each solution as a row
+//     that links straight to its detail page or pillar section.
+//   - compact: the home page "What I do" card, a single link into the matching
+//     pillar section on /services with a "View solutions" affordance.
+// Styling tracks v2/services-redesign-mockup.html.
+import type { Pillar } from '../lib/pillars';
+
+interface Props {
+  pillar: Pillar;
+  variant?: 'solutions' | 'compact';
+}
+
+const { pillar, variant = 'solutions' } = Astro.props;
+
+const cardClass =
+  'scroll-mt-28 rounded-[18px] border border-[#E2EEEE] bg-paper p-[22px] pb-2.5 transition-shadow hover:border-[#CFE6E5] hover:shadow-[0_8px_28px_rgba(13,142,140,0.10)]';
+---
+
+{
+  variant === 'solutions' ? (
+    <section id={pillar.id} class={cardClass}>
+      {pillar.aliasId && <span id={pillar.aliasId} class="block scroll-mt-28" aria-hidden="true" />}
+      <div class="flex items-start gap-3.5 pb-2">
+        <span class="inline-flex shrink-0 rounded-[14px] bg-[#EAF7F6] p-2">
+          <img src={pillar.icon} alt="" aria-hidden="true" width="56" height="56" class="h-14 w-14" />
+        </span>
+        <div>
+          <h3 class="mt-0.5 text-[18px] font-semibold tracking-tight text-ink">{pillar.name}</h3>
+          <p class="mt-1 text-[13.5px] leading-snug text-ink-muted">{pillar.oneLiner}</p>
+        </div>
+      </div>
+      <div class="border-t border-[#E2EEEE]">
+        {pillar.solutions.map((s) => (
+          <a
+            href={s.href}
+            class="group flex items-center gap-3 border-b border-[#E2EEEE] px-1.5 py-[11px] last:border-b-0 hover:bg-[#EAF7F6]"
+          >
+            <img src={s.glyph} alt="" aria-hidden="true" width="34" height="34" class="h-[34px] w-[34px] shrink-0" />
+            <span class="flex-1 text-[14.5px] font-semibold text-ink">{s.label}</span>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              class="shrink-0 text-[#0D8E8C] opacity-55 transition-transform group-hover:translate-x-0.5 group-hover:opacity-100"
+            >
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </section>
+  ) : (
+    <a href={`/services#${pillar.id}`} class={`group block ${cardClass}`}>
+      <div class="flex items-start gap-3.5 pb-2">
+        <span class="inline-flex shrink-0 rounded-[14px] bg-[#EAF7F6] p-2">
+          <img src={pillar.icon} alt="" aria-hidden="true" width="56" height="56" class="h-14 w-14" />
+        </span>
+        <div>
+          <h3 class="mt-0.5 text-[18px] font-semibold tracking-tight text-ink">{pillar.name}</h3>
+          <p class="mt-1 text-[13.5px] leading-snug text-ink-muted">{pillar.oneLiner}</p>
+        </div>
+      </div>
+      <div class="border-t border-[#E2EEEE] pb-2 pt-3">
+        <span class="inline-flex items-center gap-1.5 text-[14px] font-semibold text-accent-deep transition-colors group-hover:text-ink">
+          View solutions
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+            class="transition-transform group-hover:translate-x-0.5"
+          >
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+      </div>
+    </a>
+  )
+}

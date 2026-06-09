@@ -1,0 +1,57 @@
+---
+// One of the two doors that anchor the site: "Something is wrong" (reactive)
+// and "We want to get ahead of it" (proactive). Reused on the home page,
+// the Services overview, and the closing CTA so the structure feels coherent.
+interface Props {
+  kicker: string;
+  body: string;
+  cta_label: string;
+  cta_href: string;
+  microcopy?: string;
+  tone?: 'urgent' | 'calm';
+}
+
+const { kicker, body, cta_label, cta_href, microcopy, tone = 'calm' } = Astro.props;
+const accentBar = tone === 'urgent' ? 'bg-accent-deep' : 'bg-ink';
+const isExternal = /^https?:\/\//.test(cta_href);
+---
+
+<a
+  href={cta_href}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+  class="group relative flex h-full flex-col justify-between gap-8 rounded-2xl border border-rule bg-paper p-7 transition-colors hover:border-ink sm:p-9"
+>
+  <span class={`absolute left-0 top-7 h-8 w-[3px] rounded-r ${accentBar} sm:top-9`} aria-hidden="true"></span>
+  <div>
+    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+      {kicker}
+    </p>
+    <p class="mt-4 text-[18px] leading-relaxed text-ink sm:text-[19px]">
+      {body}
+    </p>
+  </div>
+  <div>
+    <span
+      class="inline-flex items-center gap-2 text-[15px] font-medium tracking-tight text-ink transition-colors group-hover:text-accent-deep"
+    >
+      {cta_label}
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+        class="transition-transform group-hover:translate-x-1"
+      >
+        <path
+          d="M3 8h9m0 0L8 4m4 4l-4 4"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </span>
+    {microcopy && <p class="mt-2 text-[13px] text-ink-soft">{microcopy}</p>}
+  </div>
+</a>

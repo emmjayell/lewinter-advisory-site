@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="LeWinter Advisory. When compliance, cybersecurity, and AI collide with reality, I make it work.">
+  <style>
+    text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
+  <rect width="1200" height="630" fill="#0E2A2E"/>
+
+  <!-- Faint door arches, echoing the homepage illustration -->
+  <g fill="none" stroke="#0D8E8C" stroke-width="3" opacity="0.35">
+    <path d="M 962 630 v -240 a 80 80 0 0 1 160 0 v 240"/>
+    <path d="M 1014 630 v -200 a 54 54 0 0 1 108 0 v 200" opacity="0.6"/>
+  </g>
+  <path d="M 1116 310 l 4 10.4 10.4 4 -10.4 4 -4 10.4 -4 -10.4 -10.4 -4 10.4 -4 z" fill="#36C9C6"/>
+
+  <!-- Wordmark -->
+  <text x="84" y="128" font-size="40" font-weight="700" fill="#FFFFFF">LeWinter Advisory</text>
+  <rect x="84" y="156" width="72" height="5" rx="2.5" fill="#36C9C6"/>
+
+  <!-- Headline -->
+  <text x="84" y="294" font-size="50" font-weight="700" fill="#FFFFFF">When compliance, cybersecurity,</text>
+  <text x="84" y="358" font-size="50" font-weight="700" fill="#FFFFFF">and AI collide with reality,</text>
+  <text x="84" y="422" font-size="50" font-weight="700" fill="#7FE9E6">I make it work.</text>
+
+  <!-- Footer -->
+  <text x="84" y="540" font-size="23" fill="#9FB8B8">Advisory-led cybersecurity, compliance, and technology leadership</text>
+  <text x="84" y="574" font-size="23" fill="#7E9496">lewinteradvisory.com · San Luis Obispo, California</text>
+</svg>

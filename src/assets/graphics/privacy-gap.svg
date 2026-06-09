@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" role="img" aria-label="Privacy gap diagram. What the policy promises on the left, what the website actually does on the right, the gap between them, and the fix: policy rewritten, site reconfigured, both match.">
+  <style>
+    text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
+  <defs>
+    <marker id="pgArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="#142A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Left card: the policy -->
+  <rect x="40" y="40" width="280" height="190" rx="14" fill="#F4FAFA" stroke="#CFDCDC" stroke-width="2"/>
+  <text x="62" y="70" font-size="12.5" font-weight="600" letter-spacing="1.2" fill="#0D8E8C">WHAT THE POLICY PROMISES</text>
+  <g>
+    <circle cx="74" cy="103" r="8" fill="none" stroke="#0D8E8C" stroke-width="2"/>
+    <path d="M 70 103 l 3 3 5 -6" fill="none" stroke="#0D8E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="94" y="108" font-size="13" fill="#142A2E">Consent honored</text>
+
+    <circle cx="74" cy="143" r="8" fill="none" stroke="#0D8E8C" stroke-width="2"/>
+    <path d="M 70 143 l 3 3 5 -6" fill="none" stroke="#0D8E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="94" y="148" font-size="13" fill="#142A2E">Limited tracking</text>
+
+    <circle cx="74" cy="183" r="8" fill="none" stroke="#0D8E8C" stroke-width="2"/>
+    <path d="M 70 183 l 3 3 5 -6" fill="none" stroke="#0D8E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="94" y="188" font-size="13" fill="#142A2E">Collection disclosed</text>
+  </g>
+
+  <!-- The gap -->
+  <circle cx="380" cy="128" r="17" fill="#FFFFFF" stroke="#085451" stroke-width="2.4"/>
+  <text x="380" y="134" text-anchor="middle" font-size="17.5" font-weight="700" fill="#085451">!</text>
+  <text x="380" y="166" text-anchor="middle" font-size="13" font-weight="600" fill="#085451">the gap</text>
+  <line x1="332" y1="128" x2="357" y2="128" stroke="#7E9496" stroke-width="1.8" stroke-dasharray="4 4"/>
+  <line x1="403" y1="128" x2="428" y2="128" stroke="#7E9496" stroke-width="1.8" stroke-dasharray="4 4"/>
+
+  <!-- Right card: the site -->
+  <rect x="440" y="40" width="280" height="190" rx="14" fill="#FFFFFF" stroke="#CFDCDC" stroke-width="2"/>
+  <line x1="440" y1="78" x2="720" y2="78" stroke="#CFDCDC" stroke-width="1.6"/>
+  <circle cx="462" cy="59" r="4" fill="#CFDCDC"/>
+  <circle cx="476" cy="59" r="4" fill="#CFDCDC"/>
+  <circle cx="490" cy="59" r="4" fill="#CFDCDC"/>
+  <text x="700" y="64" text-anchor="end" font-size="12.5" font-weight="600" letter-spacing="1.2" fill="#0D8E8C">WHAT THE SITE DOES</text>
+  <g>
+    <path d="M 466 116 l 8 -14 8 14 z" fill="none" stroke="#085451" stroke-width="2" stroke-linejoin="round"/>
+    <text x="492" y="113" font-size="13" fill="#142A2E">Cookies fire before consent</text>
+
+    <path d="M 466 156 l 8 -14 8 14 z" fill="none" stroke="#085451" stroke-width="2" stroke-linejoin="round"/>
+    <text x="492" y="153" font-size="13" fill="#142A2E">Pixel ships data to a third party</text>
+
+    <path d="M 466 196 l 8 -14 8 14 z" fill="none" stroke="#085451" stroke-width="2" stroke-linejoin="round"/>
+    <text x="492" y="193" font-size="13" fill="#142A2E">Forms collect more than disclosed</text>
+  </g>
+
+  <!-- Fix arrows -->
+  <path d="M 180 230 C 180 252, 240 262, 262 264" fill="none" stroke="#142A2E" stroke-width="2" marker-end="url(#pgArrow)"/>
+  <path d="M 580 230 C 580 252, 520 262, 498 264" fill="none" stroke="#142A2E" stroke-width="2" marker-end="url(#pgArrow)"/>
+
+  <!-- Fix node -->
+  <rect x="246" y="246" width="268" height="44" rx="12" fill="#085451"/>
+  <text x="380" y="266" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">Policy rewritten. Site reconfigured.</text>
+  <text x="380" y="282" text-anchor="middle" font-size="13" fill="#7FE9E6">both match</text>
+
+  <!-- Caption -->
+  <text x="380" y="314" text-anchor="middle" font-size="13.5" fill="#142A2E">The policy is the promise. The site is the evidence.</text>
+</svg>

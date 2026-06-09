@@ -3,15 +3,67 @@ import '../styles/global.css';
 import SEO from '../components/SEO.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogTitle?: string;
   titleOverride?: boolean;
+  jsonLd?: unknown[]; // page-specific structured data, appended to the site graph
 }
 
-const { title, description, ogImage, titleOverride } = Astro.props;
+const { title, description, ogImage, ogTitle, titleOverride, jsonLd = [] } = Astro.props;
+
+// Site-wide structured data: who runs the practice and what it offers.
+const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://lewinteradvisory.com/#mike',
+      name: 'Mike LeWinter',
+      jobTitle: 'Principal Consultant',
+      hasCredential: [
+        { '@type': 'EducationalOccupationalCredential', name: 'CISSP' },
+        { '@type': 'EducationalOccupationalCredential', name: 'CMMC Registered Practitioner' },
+        { '@type': 'EducationalOccupationalCredential', name: 'Verified Vanta Admin' },
+      ],
+      sameAs: ['https://linkedin.com/in/mikelewinter'],
+      worksFor: { '@id': 'https://lewinteradvisory.com/#org' },
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://lewinteradvisory.com/#org',
+      name: 'LeWinter Advisory LLC',
+      url: 'https://lewinteradvisory.com',
+      email: 'info@lewinteradvisory.com',
+      telephone: '+1-805-619-9177',
+      founder: { '@id': 'https://lewinteradvisory.com/#mike' },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'San Luis Obispo',
+        addressRegion: 'CA',
+        addressCountry: 'US',
+      },
+      areaServed: ['California', 'United States', 'Guam'],
+      knowsAbout: [
+        'Cybersecurity',
+        'SOC 2',
+        'CIS Controls',
+        'NIST Cybersecurity Framework',
+        'Incident Response',
+        'Data Privacy',
+        'Fractional CISO',
+        'vCISO',
+        'Operational Technology Security',
+      ],
+    },
+  ],
+};
+
+const ldBlocks = [siteGraph, ...jsonLd];
 ---
 
 <!doctype html>
@@ -28,8 +80,14 @@ const { title, description, ogImage, titleOverride } = Astro.props;
       title={title}
       description={description}
       ogImage={ogImage}
+      ogTitle={ogTitle}
       titleOverride={titleOverride}
     />
+    {
+      ldBlocks.map((block) => (
+        <script type="application/ld+json" set:html={JSON.stringify(block)} />
+      ))
+    }
   </head>
   <body class="min-h-screen bg-paper text-ink antialiased">
     <a
@@ -43,5 +101,6 @@ const { title, description, ogImage, titleOverride } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <StickyMobileCTA />
   </body>
 </html>

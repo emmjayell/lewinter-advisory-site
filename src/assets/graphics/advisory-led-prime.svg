@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-label="The advisory-led prime model. You have one relationship with LeWinter Advisory, which directs vetted partners for penetration testing, monitoring, forensics, and managed desktops, under our direction.">
+  <style>
+    text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
+  <defs>
+    <marker id="p4ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="#142A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="p4teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="#0D8E8C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Client node -->
+  <rect x="34" y="116" width="150" height="84" rx="14" fill="#F4FAFA" stroke="#142A2E" stroke-width="2"/>
+  <text x="109" y="154" text-anchor="middle" font-size="18" font-weight="600" fill="#142A2E">You</text>
+  <text x="109" y="176" text-anchor="middle" font-size="13" fill="#7E9496">your business</text>
+
+  <!-- One relationship -->
+  <line x1="190" y1="158" x2="280" y2="158" stroke="#142A2E" stroke-width="2.4" marker-start="url(#p4ink)" marker-end="url(#p4ink)"/>
+  <text x="235" y="142" text-anchor="middle" font-size="13" fill="#7E9496">one relationship</text>
+
+  <!-- LeWinter Advisory node -->
+  <rect x="286" y="100" width="190" height="116" rx="16" fill="#085451" stroke="#063E3E" stroke-width="2"/>
+  <text x="381" y="148" text-anchor="middle" font-size="16.5" font-weight="600" fill="#FFFFFF">LeWinter Advisory</text>
+  <text x="381" y="169" text-anchor="middle" font-size="13" fill="#7FE9E6">one accountable point</text>
+  <path d="M 464 92 l 2.4 6.2 6.2 2.4 -6.2 2.4 -2.4 6.2 -2.4 -6.2 -6.2 -2.4 6.2 -2.4 z" fill="#36C9C6"/>
+
+  <!-- Direction heading, clear above the chips -->
+  <text x="642" y="42" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="0.5" fill="#7E9496">UNDER OUR DIRECTION</text>
+
+  <!-- Partner chips -->
+  <g font-size="13.5" fill="#142A2E">
+    <rect x="560" y="56" width="170" height="36" rx="10" fill="#FFFFFF" stroke="#0D8E8C" stroke-width="1.6"/>
+    <text x="645" y="79" text-anchor="middle">Penetration testing</text>
+    <rect x="560" y="104" width="170" height="36" rx="10" fill="#FFFFFF" stroke="#0D8E8C" stroke-width="1.6"/>
+    <text x="645" y="127" text-anchor="middle">24/7 monitoring</text>
+    <rect x="560" y="152" width="170" height="36" rx="10" fill="#FFFFFF" stroke="#0D8E8C" stroke-width="1.6"/>
+    <text x="645" y="175" text-anchor="middle">Incident forensics</text>
+    <rect x="560" y="200" width="170" height="36" rx="10" fill="#FFFFFF" stroke="#0D8E8C" stroke-width="1.6"/>
+    <text x="645" y="223" text-anchor="middle">Managed desktops</text>
+  </g>
+
+  <!-- Direction arrows from LA node to each chip -->
+  <g>
+    <line x1="476" y1="150" x2="554" y2="74" stroke="#0D8E8C" stroke-width="1.8" marker-end="url(#p4teal)"/>
+    <line x1="476" y1="156" x2="554" y2="122" stroke="#0D8E8C" stroke-width="1.8" marker-end="url(#p4teal)"/>
+    <line x1="476" y1="166" x2="554" y2="170" stroke="#0D8E8C" stroke-width="1.8" marker-end="url(#p4teal)"/>
+    <line x1="476" y1="176" x2="554" y2="218" stroke="#0D8E8C" stroke-width="1.8" marker-end="url(#p4teal)"/>
+  </g>
+
+  <!-- Caption -->
+  <text x="380" y="282" text-anchor="middle" font-size="14" fill="#142A2E">One point of contact who's responsible. Not a roster you have to coordinate.</text>
+</svg>

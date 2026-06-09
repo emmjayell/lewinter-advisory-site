@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 660" role="img" aria-label="Career journey. Software developer, network administrator, software technical services, software architect at Fiserv data warehouse, Data Warehouse as a Service owning 24x7 support, lead architect at an API security startup, Pega senior system architect, Cisco, IQMS, QTG, and now LeWinter Advisory. CISSP, CMMC RP, and Verified Vanta Admin earned along the way.">
+  <style>text { font-family: 'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }</style>
+  <text x="40" y="44" font-size="11" font-weight="600" letter-spacing="1.5" fill="#0D8E8C">THE ROAD HERE</text>
+  <text x="40" y="74" font-size="20" font-weight="700" fill="#142A2E">Thirty years from first commit to independent practice.</text>
+  <path d="M 110 150 L 660 150 C 706 150 706 360 660 360 L 110 360 C 64 360 64 570 110 570 L 530 570"
+        fill="none" stroke="#E2EEEE" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 110 150 L 660 150 C 706 150 706 360 660 360 L 110 360 C 64 360 64 570 110 570 L 530 570"
+        fill="none" stroke="#36C9C6" stroke-width="2" stroke-dasharray="6 9" stroke-linecap="round"/>
+  <g text-anchor="middle">
+    <text x="110" y="112" font-size="12.5" font-weight="600" fill="#142A2E">Software Developer</text>
+    <text x="110" y="129" font-size="10.5" fill="#7E9496">first commit</text>
+    <text x="300" y="112" font-size="12.5" font-weight="600" fill="#142A2E">Network Admin</text>
+    <text x="300" y="129" font-size="10.5" fill="#7E9496">the wires and routes</text>
+    <text x="490" y="112" font-size="12" font-weight="600" fill="#142A2E">Software Technical Services</text>
+    <text x="490" y="129" font-size="10.5" fill="#7E9496">deeper builds</text>
+    <text x="660" y="112" font-size="12.5" font-weight="600" fill="#142A2E">Software Architect</text>
+    <text x="660" y="129" font-size="10.5" fill="#7E9496">Fiserv data warehouse</text>
+  </g>
+  <rect x="556" y="303" width="198" height="40" rx="6" fill="#FFFFFF"/>
+  <g text-anchor="middle">
+    <text x="654" y="318" font-size="11.5" font-weight="600" fill="#142A2E">Data Warehouse as a Service</text>
+    <text x="654" y="335" font-size="10.5" fill="#7E9496">owned 24×7 support</text>
+    <text x="490" y="318" font-size="12.5" font-weight="600" fill="#142A2E">Lead Architect</text>
+    <text x="490" y="335" font-size="10.5" fill="#7E9496">API security startup</text>
+    <text x="300" y="318" font-size="12.5" font-weight="600" fill="#142A2E">Pega Sr. Architect</text>
+    <text x="300" y="335" font-size="10.5" fill="#7E9496">enterprise systems</text>
+    <text x="110" y="318" font-size="12.5" font-weight="600" fill="#142A2E">Cisco</text>
+    <text x="110" y="335" font-size="10.5" fill="#7E9496">global scale</text>
+  </g>
+  <g font-size="11.5">
+    <text x="300" y="446" text-anchor="middle" font-size="10.5" font-weight="600" letter-spacing="0.5" fill="#7E9496">CREDENTIALS EARNED ALONG THE WAY</text>
+    <rect x="150" y="458" width="78" height="28" rx="14" fill="#F4FAFA" stroke="#0D8E8C" stroke-width="1.6"/>
+    <text x="189" y="476" text-anchor="middle" font-weight="600" fill="#142A2E">CISSP</text>
+    <rect x="238" y="458" width="96" height="28" rx="14" fill="#F4FAFA" stroke="#0D8E8C" stroke-width="1.6"/>
+    <text x="286" y="476" text-anchor="middle" font-weight="600" fill="#142A2E">CMMC RP</text>
+    <rect x="344" y="458" width="160" height="28" rx="14" fill="#F4FAFA" stroke="#0D8E8C" stroke-width="1.6"/>
+    <text x="424" y="476" text-anchor="middle" font-weight="600" fill="#142A2E">Verified Vanta Admin</text>
+  </g>
+  <g text-anchor="middle">
+    <text x="110" y="600" font-size="12.5" font-weight="600" fill="#142A2E">IQMS</text>
+    <text x="110" y="617" font-size="10.5" fill="#7E9496">manufacturing ERP</text>
+    <text x="320" y="600" font-size="12.5" font-weight="600" fill="#142A2E">QTG</text>
+    <text x="320" y="617" font-size="10.5" fill="#7E9496">partner and CTO</text>
+    <text x="530" y="600" font-size="13.5" font-weight="700" fill="#085451">LeWinter Advisory</text>
+    <text x="530" y="617" font-size="10.5" fill="#7E9496">independent, by design</text>
+  </g>
+  <g fill="#0D8E8C">
+    <circle cx="110" cy="150" r="9"/><circle cx="300" cy="150" r="9"/><circle cx="490" cy="150" r="9"/><circle cx="660" cy="150" r="9"/>
+    <circle cx="660" cy="360" r="9"/><circle cx="490" cy="360" r="9"/><circle cx="300" cy="360" r="9"/><circle cx="110" cy="360" r="9"/>
+    <circle cx="110" cy="570" r="9"/><circle cx="320" cy="570" r="9"/>
+  </g>
+  <g fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">
+    <text x="110" y="154">1</text><text x="300" y="154">2</text><text x="490" y="154">3</text><text x="660" y="154">4</text>
+    <text x="660" y="364">5</text><text x="490" y="364">6</text><text x="300" y="364">7</text><text x="110" y="364">8</text>
+    <text x="110" y="574">9</text><text x="320" y="574">10</text>
+  </g>
+  <circle cx="530" cy="570" r="11" fill="#085451"/>
+  <circle cx="530" cy="570" r="16" fill="none" stroke="#36C9C6" stroke-width="2"/>
+  <text x="530" y="574" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">11</text>
+  <path d="M 556 548 l 2.6 6.6 6.6 2.6 -6.6 2.6 -2.6 6.6 -2.6 -6.6 -6.6 -2.6 6.6 -2.6 z" fill="#36C9C6"/>
+</svg>

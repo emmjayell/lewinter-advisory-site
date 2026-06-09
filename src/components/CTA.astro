@@ -8,6 +8,8 @@ interface Props {
 
 const { href, label, variant = 'primary', class: className } = Astro.props;
 
+const isExternal = /^https?:\/\//.test(href);
+
 const base =
   'inline-flex items-center gap-2 text-[14px] font-medium tracking-tight transition-colors';
 const variants: Record<string, string> = {
@@ -19,7 +21,12 @@ const variants: Record<string, string> = {
 };
 ---
 
-<a href={href} class:list={[base, variants[variant], className]}>
+<a
+  href={href}
+  class:list={[base, variants[variant], className]}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+>
   {label}
   {
     variant !== 'link' && (

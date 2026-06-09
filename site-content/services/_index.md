@@ -1,20 +1,14 @@
 ---
 title: "Services"
-slug: "services"
-description: "Five service lines: cybersecurity assessments, client data privacy and compliance, enterprise architecture and data, IT and business transformation advisory, fractional CTO and CISO."
-cta_label: "Book a working call"
-cta_href: "/contact"
+description: "Four practice areas, each with its solutions directly beneath: cybersecurity and compliance, incident response, infrastructure and AI, and ongoing advisory. Pick the area that fits and go straight to the work."
 
-# Order of service lines on the /services overview page.
-# Each entry is the slug of a file in this folder.
-service_order:
-  - cybersecurity-assessments            # Cybersecurity Assessments
-  - client-data-privacy-compliance       # Client Data Privacy and Compliance
-  - enterprise-architecture-data         # Enterprise Architecture and Data
-  - it-business-transformation-advisory  # IT and Business Transformation Advisory
-  - fractional-cto-ciso                  # Fractional CTO / CISO
+common_thread:
+  heading: "The common thread"
+  body: "Across all of it, one thing stays the same: we own the relationship, the judgment, and the outcome. Where the work needs hands we don't have, we bring in vetted partners and direct them, so you always have one accountable point of contact."
+  cta_label: "Get in touch"
+  cta_href: "/contact"
 ---
 
-Five service lines. Each one runs fixed-fee, with a written SOW, against outcomes you can point at.
+Top-level Services page. Rendered by `src/pages/services/index.astro`: the hero and closing CTA come from the frontmatter above, and the four pillar cards (with their solution rows) come from `src/lib/pillars.ts`. Body is reference only.
 
-Most engagements start with an assessment. That's the honest way to find out what you're actually dealing with before you commit to a roadmap or a budget.
+The page is organized around one graphical spine, the four practice pillars, each with its solutions directly underneath. Situational triage (the two doors) lives on the home page hero, so it is intentionally not repeated here. Any solution is reachable within two clicks of the home page.
