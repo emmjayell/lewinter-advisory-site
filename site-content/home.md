@@ -19,7 +19,7 @@ doors:
     tone: "calm"
     body: "Know where you actually stand. Your security posture, compliance readiness, AI risk, and infrastructure, and what to fix first."
     cta_label: "Start with an assessment"
-    cta_href: "/contact"
+    cta_href: "/services/security-posture-assessment"
     microcopy: "A clear, prioritized read."
 
 # Section 2 - the problem nobody budgets for
@@ -73,7 +73,7 @@ final:
   primary_label: "Tell us what's going on"
   primary_href: "/contact"
   secondary_label: "Start with an assessment"
-  secondary_href: "/contact"
+  secondary_href: "/services/security-posture-assessment"
 ---
 
 This file is rendered by `src/pages/index.astro` entirely from the frontmatter above. The body is reference only.
